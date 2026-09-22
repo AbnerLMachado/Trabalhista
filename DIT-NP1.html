@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de Estudos NP1 | Direito Individual do Trabalho</title>
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --bg-card: #131b2e;
+      --bg-card-hover: #1c2742;
+      --accent-gold: #fbbf24;
+      --accent-blue: #3b82f6;
+      --accent-red: #ef4444;
+      --accent-green: #10b981;
+      --accent-purple: #8b5cf6;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #1f293d;
+      --netflix-red: #e50914;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2rem 1rem 1rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-title span {
+      color: var(--accent-gold);
+    }
+
+    .exam-badge {
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-gold);
+      border: 1px solid var(--accent-gold);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    nav.nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-blue);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Container Main */
+    main.container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Dashboard Grid / Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .highlight-box {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 4px solid var(--accent-red);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    .tip-box {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 4px solid var(--accent-green);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    .academic-box {
+      background: rgba(139, 92, 246, 0.1);
+      border-left: 4px solid var(--accent-purple);
+      padding: 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+
+    /* Caderno Acadêmico Formatting */
+    .academic-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .academic-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      color: var(--accent-gold);
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .academic-h2 {
+      font-size: 1.2rem;
+      color: var(--accent-blue);
+      margin: 1.5rem 0 0.75rem 0;
+      font-weight: 700;
+    }
+
+    .academic-p {
+      color: #d1d5db;
+      font-size: 0.98rem;
+      margin-bottom: 0.85rem;
+      text-align: justify;
+    }
+
+    .academic-ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: #d1d5db;
+    }
+
+    .academic-ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .legal-cite {
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: var(--accent-green);
+      margin: 0.75rem 0;
+    }
+
+    /* Flashcards 3D Flip */
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .flashcard {
+      background-color: transparent;
+      height: 220px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flashcard.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .flashcard-front {
+      background: var(--bg-card);
+      color: var(--accent-gold);
+    }
+
+    .flashcard-back {
+      background: #1e293b;
+      color: #fff;
+      transform: rotateY(180deg);
+      font-size: 0.9rem;
+    }
+
+    /* EstudoFlix (Netflix Theme) */
+    .netflix-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .netflix-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      color: var(--netflix-red);
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .video-card {
+      background: var(--bg-card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .video-card:hover {
+      transform: scale(1.03);
+      border-color: var(--netflix-red);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 140px;
+      background: #1e293b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    .play-btn {
+      position: absolute;
+      font-size: 2.5rem;
+      color: rgba(255, 255, 255, 0.85);
+      transition: transform 0.2s;
+    }
+
+    .video-card:hover .play-btn {
+      transform: scale(1.2);
+      color: var(--netflix-red);
+    }
+
+    .video-info {
+      padding: 1rem;
+    }
+
+    .video-tag {
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .video-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Quiz Section & Stats Bar */
+    .quiz-stats-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .stat-hits { color: var(--accent-green); }
+    .stat-errors { color: var(--accent-red); }
+    .stat-pct { color: var(--accent-gold); }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+      transition: width 0.3s ease;
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-badge {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--accent-blue);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+
+    .option-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--accent-blue);
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--accent-green) !important;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--accent-red) !important;
+      color: #fff;
+    }
+
+    .explanation-box {
+      display: none;
+      background: #0f172a;
+      border: 1px solid var(--accent-blue);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .reset-btn {
+      background: var(--accent-red);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Modal Video Player */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-container {
+      background: var(--bg-card);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 800px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f172a;
+    }
+
+    .modal-body {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+    }
+
+    .modal-body iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      .brand-title { font-size: 1.4rem; }
+      .quiz-stats-bar { flex-direction: column; align-items: flex-start; }
+      .academic-section { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand-title">
+        <i class="fa-solid fa-scale-balanced"></i> DIREITO DO TRABALHO <span>NP1</span>
+      </div>
+      <div class="exam-badge">
+        <i class="fa-solid fa-clock"></i> Revisão de Véspera • Prof.ª Noemia Celeste (UNIP)
+      </div>
+      <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('home')"><i class="fa-solid fa-house"></i> Início</button>
+        <button class="tab-btn" onclick="switchTab('caderno')"><i class="fa-solid fa-book-bookmark"></i> Caderno Acadêmico</button>
+        <button class="tab-btn" onclick="switchTab('teoria')"><i class="fa-solid fa-book-open"></i> Guia Teórico</button>
+        <button class="tab-btn" onclick="switchTab('cards')"><i class="fa-solid fa-layer-group"></i> Cards de Fixação</button>
+        <button class="tab-btn" onclick="switchTab('netflix')"><i class="fa-solid fa-film"></i> EstudoFlix</button>
+        <button class="tab-btn" onclick="switchTab('quiz')"><i class="fa-solid fa-circle-question"></i> Quiz (40 Questões)</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container">
+
+    <!-- TAB 1: HOME / VISÃO GERAL -->
+    <div id="tab-home" class="tab-content active">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><i class="fa-solid fa-bullseye" style="color: var(--accent-gold);"></i> Foco Absoluto na Prova</div>
+          <p>Este guia foi elaborado para garantir seu alto rendimento na NP1 de Direito Individual do Trabalho. Todo o conteúdo é pautado no programa oficial ministrado nas <strong>Aulas 1 a 5</strong> e nos materiais de apoio da professora.</p>
+          <div class="highlight-box">
+            <strong><i class="fa-solid fa-triangle-exclamation"></i> Alerta da Véspera:</strong> A prova cobra com rigor os requisitos da relação de emprego (P-P-N-O-S), a lei do estágio (11.788), a diferença entre alteração contratual e poder diretivo, e as regras do contrato a termo (experiência, prorrogação e sucessão).
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fa-solid fa-map" style="color: var(--accent-blue);"></i> Matriz dos 5 Módulos da NP1</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li><i class="fa-solid fa-check-double" style="color: var(--accent-green);"></i> <strong>Módulo 1:</strong> Princípios e Fontes (Primazia da Realidade, Tema 1.046 STF, Art. 620 CLT).</li>
+            <li><i class="fa-solid fa-check-double" style="color: var(--accent-green);"></i> <strong>Módulo 2:</strong> Vínculo de Emprego x Estágio, Autônomo e Voluntário.</li>
+            <li><i class="fa-solid fa-check-double" style="color: var(--accent-green);"></i> <strong>Módulo 3:</strong> Sujeitos, Alteridade e Poder Disciplinar do Empregador.</li>
+            <li><i class="fa-solid fa-check-double" style="color: var(--accent-green);"></i> <strong>Módulo 4:</strong> Contrato Individual: Validade, Formas e Prescrição (5 e 2 anos).</li>
+            <li><i class="fa-solid fa-check-double" style="color: var(--accent-green);"></i> <strong>Módulo 5:</strong> Contrato a Termo, Experiência (90 dias) e Rescisão Antecipada (Art. 479).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CADERNO ACADÊMICO DENSO (NOVA ABA) -->
+    <div id="tab-caderno" class="tab-content">
+      
+      <!-- Módulo 1 Acadêmico -->
+      <div class="academic-section">
+        <div class="academic-h1"><i class="fa-solid fa-gavel"></i> Módulo 1: Introdução, Fontes e Principiologia do Direito do Trabalho</div>
+        
+        <div class="academic-h2">1.1 Conceito, Objeto e Eixos de Atuação</div>
+        <p class="academic-p">O Direito do Trabalho é o ramo especializado da ciência jurídica encarregado de regular as relações jurídicas de trabalho subordinado e certas formas afins, estruturando-se no contraponto entre a autonomia privada e a tutela pública. Divide-se em quatro eixos fundamentais:</p>
+        <ul class="academic-ul">
+          <li><strong>Direito Individual do Trabalho:</strong> Regula a relação entre o trabalhador individualmente considerado e o seu empregador.</li>
+          <li><strong>Direito Coletivo do Trabalho:</strong> Disciplina as relações entre organizações sindicais e a negociação de condições gerais de trabalho.</li>
+          <li><strong>Direito Processual do Trabalho:</strong> Instrumentaliza a aplicação jurisdicional das normas trabalhistas materiais.</li>
+          <li><strong>Direito Internacional do Trabalho:</strong> Normatizado primariamente pelas Convenções e Recomendações da Organização Internacional do Trabalho (OIT).</li>
+        </ul>
+
+        <div class="academic-h2">1.2 Sistema de Fontes Trabalhistas e Conflito Normativo</div>
+        <p class="academic-p">O sistema de fontes no Direito do Trabalho é multinormativo e dinâmico, dividindo-se entre fontes materiais (fatos sociais, econômicos e políticos) e fontes formais (normas jurídicas positivadas). As fontes formais desdobram-se em:</p>
+        <ul class="academic-ul">
+          <li><strong>Heterônomas:</strong> Emanadas do Estado sem participação direta dos destinatários (Constituição Federal, CLT, Leis Esparsas, Medidas Provisórias e Tratados Internacionais ratificados).</li>
+          <li><strong>Autônomas:</strong> Criadas diretamente pelos sujeitos da relação trabalhista (Convenções Coletivas de Trabalho - CCT, Acordos Coletivos de Trabalho - ACT, Regulamento Interno de Empresa e Costumes).</li>
+        </ul>
+
+        <div class="academic-box">
+          <strong><i class="fa-solid fa-scale-unbalanced"></i> O Grande Conflito: Prevalência do Negociado sobre o Legislado (Art. 611-A vs. Art. 611-B da CLT)</strong>
+          <p style="margin-top:0.5rem;">A Reforma Trabalhista (Lei nº 13.467/2017) consagrou a prevalência das negociações coletivas sobre a lei nas hipóteses do <strong>Art. 611-A da CLT</strong> (ex: jornada, banco de horas, intervalo intrajornada respeitado o mínimo de 30 min, teletrabalho). Em contrapartida, o <strong>Art. 611-B</strong> estabelece um rol taxativo de direitos de indisponibilidade absoluta (patamar civilizatório mínimo) que NUNCA podem ser suprimidos ou reduzidos por CCT/ACT, tais como: normas de saúde e segurança, FGTS, salário mínimo, seguro-desemprego e licença-maternidade.</p>
+          <div class="legal-cite">
+            <strong>Tema 1.046 do STF:</strong> "São constitucionais os acordos e convenções coletivos que limitam ou restringem direitos trabalhistas, desde que não os direitos absolutamente indisponíveis garantidos constitucionalmente."
+          </div>
+          <div class="legal-cite">
+            <strong>Art. 620 da CLT (Regra de Ouro do Conflito de Instrumentos):</strong> "As condições estipuladas em Acordo Coletivo de Trabalho (ACT) sempre prevalecerão sobre as estipuladas em Convenção Coletiva de Trabalho (CCT)."
+          </div>
+        </div>
+
+        <div class="academic-h2">1.3 Princípios Fundamentais do Direito Individual do Trabalho</div>
+        <p class="academic-p">Os princípios informam, interpretam e integram o ordenamento trabalhista para mitigar a assimetria socioeconômica entre as partes:</p>
+        <ul class="academic-ul">
+          <li><strong>Princípio Protetor:</strong> Matriz do ramo trabalhista. Desdobra-se em três vertentes:
+            <br>a) <em>In Dubio Pro Operario:</em> Na existência de dúvida razoável sobre a interpretação do texto legal, adota-se a leitura mais favorável ao trabalhador.
+            <br>b) <em>Norma Mais Favorável:</em> Aplica-se a norma mais vantajosa no confronto hierárquico (atenuado pelo Art. 620 e pela Teoria do Conglobamento).
+            <br>c) <em>Condição Mais Benéfica:</em> As vantagens concedidas ao longo do contrato aderem ao patrimônio do empregado e não podem ser suprimidas (Súmula 51 do TST e Art. 468 da CLT).
+          </li>
+          <li><strong>Princípio da Primazia da Realidade:</strong> Em caso de divergência entre o que estipulam os documentos/contratos e a realidade fática demonstrada no dia a dia da prestação, prevalecem os fatos reais (Art. 9º da CLT).</li>
+          <li><strong>Princípio da Indisponibilidade / Irrenunciabilidade dos Direitos:</strong> É nula a renúncia individual do trabalhador a direitos trabalhistas assegurados por norma cogente.</li>
+          <li><strong>Princípio da Inalterabilidade Contratual Lesiva (Art. 468 da CLT):</strong> Alterações contratuais só são válidas se houver mútuo consentimento E não resultarem em prejuízos diretos ou indiretos ao empregado.</li>
+          <li><strong>Princípio da Continuidade da Relação de Emprego:</strong> Presume-se que o contrato de trabalho é por prazo indeterminado. O ônus de provar o término do vínculo é do empregador (Súmula 212 do TST).</li>
+          <li><strong>Princípio da Alteridade (Art. 2º da CLT):</strong> Os riscos do empreendimento econômico pertencem exclusivamente ao empregador, vedada a transferência de prejuízos ao obreiro.</li>
+        </ul>
+      </div>
+
+      <!-- Módulo 2 Acadêmico -->
+      <div class="academic-section">
+        <div class="academic-h1"><i class="fa-solid fa-users-gear"></i> Módulo 2: Teoria Geral do Vínculo de Emprego e Figuras Próximas</div>
+        
+        <div class="academic-h2">2.1 Distinção Dogmática: Relação de Trabalho vs. Relação de Emprego</div>
+        <p class="academic-p">A <strong>relação de trabalho</strong> é o gênero que engloba qualquer modalidade de pactuação na qual uma pessoa física despende energia humana em favor de outrem (autônomo, estagiário, voluntário, avulso, eventual). A <strong>relação de emprego</strong> é a espécie tutelada pela CLT, caracterizada pela presença simultânea e cumulativa dos 5 requisitos do Art. 3º.</p>
+
+        <div class="academic-h2">2.2 Os 5 Requisitos Cumulativos da Relação de Emprego (P-P-N-O-S)</div>
+        <ul class="academic-ul">
+          <li><strong>1. Pessoa Física / Natural:</strong> O empregado deve ser necessariamente um ser humano. Pessoas jurídicas não podem ser contratadas como empregadas (vedação à pejotização simulada).</li>
+          <li><strong>2. Pessoalidade (Intuitu Personae):</strong> O serviço deve ser prestado pessoalmente pelo indivíduo contratado, não sendo permitida a substituição habitual por terceiros.</li>
+          <li><strong>3. Não Eventualidade (Habitualidade / Inserção):</strong> O trabalho deve ser prestado de forma duradoura e integrada à dinâmica de funcionamento e ao objetivo normal da empresa.
+            <br><em>Nota de Prova:</em> Trabalhar poucas vezes por semana (ex: 1 ou 2 dias fixos) NÃO afasta a não eventualidade no regime comum da CLT!</li>
+          <li><strong>4. Onerosidade:</strong> Intenção contraprestativa. O empregado trabalha mediante expectativa de pagamento de salário; o empregador assume o dever retributivo.</li>
+          <li><strong>5. Subordinação Jurídica:</strong> Elemento qualificador por excelência. Trata-se do estado de sujeição do trabalhador ao poder de direção, controle e disciplina do empregador sobre a execução do trabalho.
+            <br><em>Subordinação Estrutural / Objetiva:</em> Manifesta-se quando o trabalhador se insere na organização produtiva do tomador, ainda que sem ordens diretas contínuas.
+            <br><em>Controle Telemático (Art. 6º da CLT):</em> Meios telemáticos e informatizados (mensagens, e-mails, plataformas) equiparam-se aos meios presenciais de subordinação.</li>
+        </ul>
+
+        <div class="academic-box">
+          <strong><i class="fa-solid fa-user-check"></i> Exclusividade e Hipossuficiência NÃO SÃO requisitos do vínculo!</strong>
+          <p style="margin-top:0.3rem;">O empregado pode ter validamente múltiplos contratos de trabalho simultâneos com empresas diferentes, desde que haja compatibilidade de horários e ausência de concorrência desleal.</p>
+        </div>
+
+        <div class="academic-h2">2.3 Figuras Próximas da Relação de Emprego</div>
+        <ul class="academic-ul">
+          <li><strong>Estágio (Lei nº 11.788/2008):</strong> Ato educativo escolar supervisionado. Exige matrícula regular, celebração de Termo de Compromisso de Estágio (TCE) tripartite (instituição, concedente e estudante), orientação e compatibilidade de horários.
+            <br>• <em>Estágio Não Obrigatório:</em> A concessão de bolsa ou outra forma de contraprestação E do auxílio-transporte é COMPULSÓRIA (Art. 12).
+            <br>• <em>Consequência do Desvirtuamento:</em> A inobservância de qualquer requisito legal gera o reconhecimento automático do vínculo de emprego direto com a empresa (Art. 3º, §2º).</li>
+          <li><strong>Trabalhador Autônomo (Art. 442-B da CLT):</strong> Presta serviços sem subordinação jurídica, assumindo seus próprios riscos. A contratação do autônomo, cumpridas as formalidades legais, com ou sem exclusividade, de forma contínua ou não, afasta a qualidade de empregado (Tema 1.389 do STF).</li>
+          <li><strong>Trabalhador Avulso (Art. 7º, XXXIV da CF):</strong> Presta serviços a diversos tomadores sem vínculo empregatício direto, com a intermediação obrigatória do sindicato ou do Órgão Gestor de Mão de Obra (OGMO). Possui igualdade constitucional de direitos com os empregados permanentes.</li>
+          <li><strong>Trabalho Voluntário (Lei nº 9.608/1998):</strong> Serviço não remunerado prestado por pessoa física a entidade pública ou instituição privada sem fins lucrativos. Exige Termo de Adesão. O mero ressarcimento de despesas comprovadas não descaracteriza o voluntariado.</li>
+          <li><strong>Trabalho Proibido vs. Trabalho Ilícito:</strong>
+            <br>• <em>Trabalho Proibido:</em> A atividade em si é lícita, mas vedada àquele trabalhador específico (ex: trabalho noturno/perigoso para menores de 18 anos - Art. 7º, XXXIII CF). A nulidade opera *ex nunc*, preservando o direito ao pagamento de todas as verbas trabalhistas para impedir o enriquecimento sem causa do empregador.
+            <br>• <em>Trabalho Ilícito:</em> O objeto do contrato é crime/contravenção (ex: jogo do bicho, narcotráfico). O contrato é nulo de pleno direito sem geração de verbas trabalhistas.
+            <br>• <em>Súmula 363 do TST (Administração Pública):</em> A contratação sem concurso público gera nulidade e dá direito APENAS ao pagamento dos salários estritos e aos depósitos do FGTS.</li>
+        </ul>
+      </div>
+
+      <!-- Módulo 3 Acadêmico -->
+      <div class="academic-section">
+        <div class="academic-h1"><i class="fa-solid fa-building-user"></i> Módulo 3: Os Sujeitos da Relação de Emprego e os Poderes do Empregador</div>
+        
+        <div class="academic-h2">3.1 Conceito Legal de Empregador e Despersonalização da Empresa</div>
+        <p class="academic-p">Nos termos do <strong>Art. 2º da CLT</strong>, considera-se empregador a empresa, individual ou coletiva, que, assumindo os riscos da atividade econômica, admite, salaria e dirige a prestação pessoal de serviço. O parágrafo 1º equipara ao empregador os profissionais liberais, as instituições sem fins lucrativos, as associações e os entes despersonificados que admitam trabalhadores como empregados.</p>
+
+        <div class="academic-h2">3.2 Grupo Econômico Trabalhista (Art. 2º, §§ 2º e 3º da CLT) e Súmula 129 TST</div>
+        <p class="academic-p">Sempre que uma ou mais empresas, tendo embora, cada uma delas, personalidade jurídica própria, estiverem sob a direção, controle ou administração de outra, ou demonstrando interesse integrado e atuação conjunta, constituirão grupo econômico para fins trabalhistas, respondendo <strong>solidariamente</strong> pelas obrigações.</p>
+        <div class="legal-cite">
+          <strong>Súmula 129 do TST (Unicidade Contratual):</strong> "A prestação de serviços a mais de uma empresa do mesmo grupo econômico, durante a mesma jornada de trabalho, não caracteriza a coexistência de mais de um contrato de trabalho, salvo estipulação em contrário."
+        </div>
+
+        <div class="academic-h2">3.3 O Poder Empregatício (Diretivo) e Suas Manifestações</div>
+        <p class="academic-p">O poder diretivo representa o conjunto de prerrogativas asseguradas ao empregador para gerir seu empreendimento. Desdobra-se em:</p>
+        <ul class="academic-ul">
+          <li><strong>Poder Organizativo:</strong> Capacidade de estruturar a atividade empresarial, definir cargos, setores e diretrizes.</li>
+          <li><strong>Poder Regulamentar:</strong> Edição de normas internas e regulamento de empresa.</li>
+          <li><strong>Poder Fiscalizatório / de Controle:</strong> Acompanhamento da execução das tarefas, controle de frequência e monitoramento de metas.</li>
+          <li><strong>Poder Disciplinar:</strong> Faculdade de aplicar sanções ao empregado em caso de descumprimento de deveres contratuais.
+            <br>• <em>Advertência:</em> Aceita pela doutrina/prática, mas NÃO possui previsão expressa na CLT.
+            <br>• <em>Suspensão Disciplinar (Art. 474 da CLT):</em> Sanção formal. A suspensão por mais de 30 dias consecutivos importa na rescisão injustificada do contrato (rescisão indireta).
+            <br>• <em>Dispensa por Justa Causa (Art. 482 da CLT):</em> Penalidade máxima decorrente de falta grave.</li>
+        </ul>
+
+        <div class="academic-h2">3.4 Limites do Poder Diretivo: Direitos Fundamentais e Jus Variandi</div>
+        <p class="academic-p">O poder diretivo não é absoluto, encontrando balizas nos direitos fundamentais da pessoa humana:</p>
+        <ul class="academic-ul">
+          <li><strong>Vedação à Revista Íntima (Lei nº 13.271/2016):</strong> É expressamente proibida a realização de revistas íntimas (desnudamento, contato físico) em funcionárias ou funcionários. Revistas visuais em pertences são toleradas se impessoais e gerais.</li>
+          <li><strong>Monitoramento e Intimidade:</strong> É vedada a instalação de câmeras em locais de refúgio da intimidade (refeitórios, vestiários, banheiros).</li>
+          <li><strong>Jus Variandi vs. Jus Resistentiae:</strong> <em>Jus variandi</em> é a faculdade legal do empregador de alterar unilateralmente pequenas condições secundárias de trabalho. Se o empregador exorbitar esse poder com alterações lesivas ou ilícitas, nasce para o trabalhador o <em>Jus resistentiae</em> (direito de recusa e resistência).</li>
+        </ul>
+      </div>
+
+      <!-- Módulo 4 Acadêmico -->
+      <div class="academic-section">
+        <div class="academic-h1"><i class="fa-solid fa-file-signature"></i> Módulo 4: Contrato Individual de Trabalho: Conceito, Validade e Prescrição</div>
+        
+        <div class="academic-h2">4.1 Conceito, Natureza e Caracteres Jurídicos</div>
+        <p class="academic-p">Pelo <strong>Art. 442 da CLT</strong>, o contrato individual de trabalho é o acordo tácito ou expresso correspondente à relação de emprego. Possui natureza de negócio jurídico de direito privado com as seguintes características:</p>
+        <ul class="academic-ul">
+          <li><strong>Consensual:</strong> Aperfeiçoa-se com o simples acordo de vontades (não exige forma solene como regra).</li>
+          <li><strong>Sinalagmático / Bilateral:</strong> Cria obrigações recíprocas e interdependentes para ambas as partes.</li>
+          <li><strong>Oneroso:</strong> Envolve prestação econômica correlata.</li>
+          <li><strong>De Trato Sucessivo / Continuado:</strong> A prestação do serviço renova-se no tempo.</li>
+          <li><strong>Intuitu Personae:</strong> Infungível em relação à pessoa do empregado.</li>
+        </ul>
+
+        <div class="academic-h2">4.2 Formas de Pactuação e Teoria das Nulidades</div>
+        <p class="academic-p">Conforme o <strong>Art. 443 da CLT</strong>, o contrato individual de trabalho pode ser acordado <strong>tacitamente ou expressamente, verbalmente ou por escrito</strong>. O contrato tácito decorre da tolerância reiterada da prestação subordinada sem oposição. A falta de anotação na Carteira de Trabalho (CTPS) gera infração administrativa, mas NÃO anula a existência do contrato de trabalho.</p>
+
+        <div class="academic-h2">4.3 Prescrição Trabalhista (Art. 7º, XXIX da Constituição Federal)</div>
+        <p class="academic-p">A ação quanto aos créditos resultantes das relações de trabalho prescreve nos prazos constitucionais invioláveis:</p>
+        <div class="legal-cite">
+          <strong>Regra Constitucional Dupla de Prescrição:</strong>
+          <br>• <strong>Prazo Quinquenal (5 anos):</strong> Alcance pretérito máximo dos direitos pleiteados, contado retroativamente da data do ajuizamento da ação.
+          <br>• <strong>Prazo Bienal (2 anos):</strong> Limite temporal máximo para o trabalhador ingressar com a ação trabalhista em juízo, contado da data de extinção do contrato de trabalho.
+        </div>
+      </div>
+
+      <!-- Módulo 5 Acadêmico -->
+      <div class="academic-section">
+        <div class="academic-h1"><i class="fa-solid fa-hourglass-half"></i> Módulo 5: Duração e Modalidades de Contrato (Prazo Indeterminado vs. A Termo)</div>
+        
+        <div class="academic-h2">5.1 Regra Geral vs. Exceção do Prazo Determinado</div>
+        <p class="academic-p">Vige no direito brasileiro a presunção do <strong>Contrato por Prazo Indeterminado</strong>. O <strong>Contrato por Prazo Determinado (Contrato a Termo)</strong> é exceção taxativa, cuja validade depende do enquadramento rigoroso nas hipóteses do <strong>Art. 443, § 2º da CLT</strong>:</p>
+        <ul class="academic-ul">
+          <li><strong>Alínea 'a':</strong> Serviço cuja natureza ou transitoriedade justifique a predeterminação do prazo (ex: contratação para reforma pontual).</li>
+          <li><strong>Alínea 'b':</strong> Atividades empresariais de caráter transitório (ex: comércio em época de festas natalinas).</li>
+          <li><strong>Alínea 'c':</strong> Contrato de experiência.</li>
+        </ul>
+
+        <div class="academic-h2">5.2 Regras Estritas de Duração, Prorrogação e Sucessão</div>
+        <ul class="academic-ul">
+          <li><strong>Duração Máxima Geral (Art. 445, caput):</strong> Os contratos a termo das alíneas 'a' e 'b' podem durar no máximo <strong>2 anos (24 meses)</strong>.</li>
+          <li><strong>Duração Máxima da Experiência (Art. 445, parágrafo único):</strong> Não pode exceder <strong>90 DIAS CORRIDOS</strong> (não são 3 meses!).</li>
+          <li><strong>Regra da Prorrogação Única (Art. 451 da CLT):</strong> O contrato por prazo determinado pode ser prorrogado APENAS UMA VEZ. Se for prorrogado mais de uma vez (ex: 30 + 30 + 30 dias), converter-se-á automaticamente em Contrato por Prazo Indeterminado.</li>
+          <li><strong>Sucessão de Contratos a Termo (Art. 452 da CLT):</strong> Considera-se por prazo indeterminado todo contrato que suceder, dentro de <strong>6 meses</strong>, a outro contrato por prazo determinado, salvo se a expiração deste dependeu da execução de serviços especializados ou de certos acontecimentos.</li>
+        </ul>
+
+        <div class="academic-box">
+          <strong><i class="fa-solid fa-calculator"></i> Extinção Antecipada Imotivada dos Contratos a Termo (Arts. 479, 480 e 481 da CLT)</strong>
+          <p style="margin-top:0.4rem;">• <strong>Rescisão pelo Empregador sem justa causa (Art. 479):</strong> Obriga o pagamento de uma INDENIZAÇÃO correspondente à <strong>METADE da remuneração</strong> a que o empregado teria direito até o termo do contrato.</p>
+          <p>• <strong>Rescisão pelo Empregado (Art. 480):</strong> O empregado indenizará o empregador dos prejuízos que desse fato lhe resultarem, limitada ao valor do Art. 479.</p>
+          <p>• <strong>Cláusula Assecuratória do Direito Recíproco de Rescisão (Art. 481):</strong> Se o contrato contiver essa cláusula e qualquer das partes exercê-la antes do prazo, aplicar-se-ão as regras do contrato por prazo indeterminado (exige aviso prévio regimental e multa do FGTS se a iniciativa for do empregador).</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 3: GUIA TEÓRICO RESUMIDO -->
+    <div id="tab-teoria" class="tab-content">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-title"><i class="fa-solid fa-graduation-cap"></i> Resumo Descomplicado das Aulas 1 a 5</div>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">Síntese em linguagem direta e didática, focada nas regras e pegadinhas de prova.</p>
+      </div>
+
+      <div class="grid-2">
+        <!-- Módulo 1 -->
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-gold);">1. Princípios & Fontes do Direito do Trabalho</div>
+          <p><strong>• Relação de Trabalho x Emprego:</strong> Trabalho é gênero (qualquer esforço humano); emprego é espécie (regulada pela CLT).</p>
+          <p><strong>• Primazia da Realidade:</strong> Os fatos comprovados no dia a dia prevalecem sobre documentos, rótulos ou assinaturas (Art. 9º da CLT). Papel não esconde fraude!</p>
+
+          <p><strong>• Negociado sobre o Legislado (Tema 1.046 STF & Art. 611-A CLT):</strong> Acordos e Convenções Coletivas podem limitar direitos, DESDE QUE preservem direitos indisponíveis (Art. 611-B - ex: FGTS, salário mínimo, maternidade).</p>
+          <div class="tip-box">
+            <strong>Gatilho de Prova (Art. 620 CLT):</strong> O Acordo Coletivo de Trabalho (ACT) SEMPRE PREVALECE sobre a Convenção Coletiva de Trabalho (CCT), independentemente de ser mais ou menos benéfico.
+          </div>
+        </div>
+
+        <!-- Módulo 2 -->
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-blue);">2. Requisitos do Vínculo & Figuras Próximas</div>
+          <p><strong>• Requisitos Cumulativos do Vínculo (P-P-N-O-S):</strong></p>
+          <ul style="padding-left: 1.2rem; font-size: 0.9rem; margin-bottom: 0.5rem;">
+            <li><strong>P</strong>essoa Física/Natural (empregado jamais é PJ).</li>
+            <li><strong>P</strong>essoalidade (intuitu personae - infungível).</li>
+            <li><strong>N</strong>ão Eventualidade (inserção permanente na rotina).</li>
+            <li><strong>O</strong>nerosidade (intenção salarial).</li>
+            <li><strong>S</strong>ubordinação Jurídica (submissão às ordens).</li>
+          </ul>
+          <div class="highlight-box">
+            <strong>Cuidado com as Pegadinhas:</strong> Exclusividade e Hipossuficiência NÃO SÃO requisitos da relação de emprego! Além disso, trabalhar apenas 1 dia por semana PODE caracterizar vínculo se for habitual.
+          </div>
+          <p><strong>• Estágio (Lei 11.788/08):</strong> Ato educativo. Estágio não obrigatório EXIGE bolsa + auxílio-transporte. Desvirtuamento gera vínculo imediato.</p>
+        </div>
+
+        <!-- Módulo 3 -->
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-green);">3. Sujeitos & Poderes do Empregador</div>
+          <p><strong>• Empregador & Alteridade (Art. 2º CLT):</strong> O empregador assume EXCLUSIVAMENTE os riscos da atividade econômica. Não pode repassar prejuízos ao empregado.</p>
+          <p><strong>• Grupo Econômico (Súmula 129 TST):</strong> Responsabilidade solidária. Prestar serviços a mais de uma empresa do mesmo grupo na mesma jornada gera CONTRATO ÚNICO.</p>
+          <p><strong>• Poder Disciplinar & Limites:</strong></p>
+          <ul style="padding-left: 1.2rem; font-size: 0.9rem;">
+            <li>Suspensão disciplinar máxima: 30 dias (Art. 474 CLT). Se passar disso, é rescisão indireta.</li>
+            <li>Advertência verbal/escrita é aceita na prática, mas NÃO está prevista expressamente na CLT como sanção formal.</li>
+            <li>Revista íntima é PROIBIDA (Lei 13.271/16). Câmeras em banheiros/vestiários violam a intimidade.</li>
+          </ul>
+        </div>
+
+        <!-- Módulo 4 e 5 -->
+        <div class="card">
+          <div class="card-title" style="color: var(--accent-red);">4 e 5. Contrato Individual & Experiência</div>
+          <p><strong>• Prescrição Trabalhista (Art. 7º, XXIX CF):</strong> 5 anos durante o vínculo, até o limite de 2 anos após a extinção do contrato.</p>
+          <p><strong>• Contrato de Experiência (Art. 445 CLT):</strong> Prazo máximo de 90 DIAS CORRIDOS (não são 3 meses!). Permite apenas UMA prorrogação.</p>
+          <p><strong>• Segunda Prorrogação (Art. 451 CLT):</strong> Se prorrogado mais de uma vez (ex: 30+30+30 dias), vira automaticamente Contrato por Prazo Indeterminado.</p>
+          <div class="tip-box">
+            <strong>Ruptura Antecipada (Art. 479 CLT):</strong> Se o empregador demitir sem justa causa antes do prazo final, deve pagar INDENIZAÇÃO de METADE da remuneração dos dias restantes.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: CARDS VISUAIS DE FIXAÇÃO -->
+    <div id="tab-cards" class="tab-content">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-title"><i class="fa-solid fa-layer-group"></i> Flashcards Interativos (Clique no card para girar)</div>
+      </div>
+
+      <div class="flashcard-grid">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <i class="fa-solid fa-question-circle fa-2x" style="margin-bottom: 0.5rem;"></i>
+              <strong>Qual a diferença entre 90 DIAS e 3 MESES na experiência?</strong>
+            </div>
+            <div class="flashcard-back">
+              A CLT estabelece o limite de <strong>90 DIAS CORRIDOS</strong>. Como os meses têm durações variadas (28, 30, 31 dias), fixar 3 meses pode ultrapassar 90 dias e converter o contrato em prazo indeterminado!
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <i class="fa-solid fa-balance-scale fa-2x" style="margin-bottom: 0.5rem;"></i>
+              <strong>No conflito entre ACT e CCT, qual prevalece?</strong>
+            </div>
+            <div class="flashcard-back">
+              Pelo <strong>Art. 620 da CLT</strong> (Reforma Trabalhista), as condições estipuladas em <strong>Acordo Coletivo (ACT)</strong> sempre prevalecerão sobre as da Convenção Coletiva (CCT).
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <i class="fa-solid fa-gavel fa-2x" style="margin-bottom: 0.5rem;"></i>
+              <strong>Qual a indenização do Art. 479 da CLT?</strong>
+            </div>
+            <div class="flashcard-back">
+              Se o empregador romper o contrato a termo sem justa causa antes do prazo, pagará por indenização a <strong>METADE da remuneração</strong> a que o empregado teria direito até o termo do contrato.
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+          <div class="flashcard-inner">
+            <div class="flashcard-front">
+              <i class="fa-solid fa-user-shield fa-2x" style="margin-bottom: 0.5rem;"></i>
+              <strong>O que acontece se houver 2ª prorrogação do contrato a termo?</strong>
+            </div>
+            <div class="flashcard-back">
+              Pelo <strong>Art. 451 da CLT</strong>, o contrato que for prorrogado mais de uma vez passa a vigorar como <strong>Contrato por Prazo Indeterminado</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: ESTUDOFLIX (NETFLIX STYLE) -->
+    <div id="tab-netflix" class="tab-content">
+      <div class="netflix-header">
+        <div class="netflix-title">ESTUDOFLIX</div>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">| Central de Vídeos e Podcasts de Revisão</span>
+      </div>
+
+      <div class="card-title" style="font-size: 1.1rem; margin-bottom: 1rem;">🎬 Galeria de Vídeos, Shorts e Podcasts</div>
+      <div class="video-grid" style="margin-bottom: 2rem;">
+        
+        <!-- Video 1 (Shorts 1) -->
+        <div class="video-card" onclick="openVideoModal('vlWYNG8cucc', 'A Base do Direito do Trabalho no Brasil')">
+          <div class="video-thumbnail">
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Shorts</span>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">Módulo 1 • Princípios</div>
+            <div class="video-name">A Base do Direito do Trabalho no Brasil</div>
+          </div>
+        </div>
+
+        <!-- Video 2 (Shorts 2) -->
+        <div class="video-card" onclick="openVideoModal('q9GVKF-XuQ0', 'Como a CLT Define o Vínculo de Emprego')">
+          <div class="video-thumbnail">
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Shorts</span>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">Módulo 2 • Requisitos</div>
+            <div class="video-name">Como a CLT Define o Vínculo de Emprego (P-P-N-O-S)</div>
+          </div>
+        </div>
+
+        <!-- Video 3 (Shorts 3) -->
+        <div class="video-card" onclick="openVideoModal('IwlPGDszCZ4', 'O Limite Exato do Poder do Chefe')">
+          <div class="video-thumbnail">
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Shorts</span>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">Módulo 3 • Poder Diretivo</div>
+            <div class="video-name">O Limite Exato do Poder do Chefe</div>
+          </div>
+        </div>
+
+        <!-- Video 4 (Shorts 4) -->
+        <div class="video-card" onclick="openVideoModal('MZ1d-H6JntM', 'Como o Contrato de Trabalho Nasce Sem Assinatura')">
+          <div class="video-thumbnail">
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Shorts</span>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">Módulo 4 • Formas</div>
+            <div class="video-name">Como o Contrato de Trabalho Nasce Sem Assinatura</div>
+          </div>
+        </div>
+
+        <!-- Video 5 (Shorts 5) -->
+        <div class="video-card" onclick="openVideoModal('kwOTwuwPsUs', 'Como o Contrato de Experiência Vira Definitivo')">
+          <div class="video-thumbnail">
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Shorts</span>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">Módulo 5 • Experiência</div>
+            <div class="video-name">Como o Contrato de Experiência Vira Definitivo</div>
+          </div>
+        </div>
+
+        <!-- Video 6 (Aulão 1) -->
+        <div class="video-card" onclick="openVideoModal('vRntteV6YTU', 'Direito do Trabalho: Relações de Emprego e Contrato')">
+          <div class="video-thumbnail">
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Vídeo Completo</span>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">Aulão de Revisão</div>
+            <div class="video-name">Direito do Trabalho: Relações de Emprego e Contrato</div>
+          </div>
+        </div>
+
+        <!-- Video 7 (Podcast 2) -->
+        <div class="video-card" onclick="openVideoModal('MJKe4ZN2_6Q', 'Regras e Armadilhas da Relação de Emprego')">
+          <div class="video-thumbnail">
+            <i class="fa-solid fa-circle-play play-btn"></i>
+            <span style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">Podcast Audio</span>
+          </div>
+          <div class="video-info">
+            <div class="video-tag">Podcast Especial NP1</div>
+            <div class="video-name">Regras e Armadilhas da Relação de Emprego</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 6: QUIZ INTERATIVO -->
+    <div id="tab-quiz" class="tab-content">
+      
+      <!-- Stats Bar -->
+      <div class="quiz-stats-bar">
+        <div class="stat-box">
+          <i class="fa-solid fa-circle-check stat-hits fa-lg"></i>
+          <div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Acertos</div>
+            <div class="stat-number stat-hits" id="stat-hits-num">0</div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <i class="fa-solid fa-circle-xmark stat-errors fa-lg"></i>
+          <div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Erros</div>
+            <div class="stat-number stat-errors" id="stat-errors-num">0</div>
+          </div>
+        </div>
+
+        <div class="stat-box">
+          <i class="fa-solid fa-chart-line stat-pct fa-lg"></i>
+          <div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Aproveitamento</div>
+            <div class="stat-number stat-pct" id="stat-pct-num">0%</div>
+          </div>
+        </div>
+
+        <button class="reset-btn" onclick="resetQuiz()"><i class="fa-solid fa-rotate-right"></i> Reiniciar Quiz</button>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="quiz-progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Quiz Questions Container -->
+      <div id="quiz-questions-container">
+        <!-- Rendered dynamically via JS -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Video Modal -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <span id="modalVideoTitle" style="font-weight: 700; color: #fff;">Vídeo de Estudo</span>
+        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 1.2rem; color: var(--text-muted);" onclick="closeVideoModal()"></i>
+      </div>
+      <div class="modal-body">
+        <iframe id="youtubeIframe" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Code -->
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      
+      document.getElementById('tab-' + tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Modal Video Player (Suporta URLs normais e Shorts)
+    function openVideoModal(youtubeId, title) {
+      document.getElementById('modalVideoTitle').innerText = title;
+      document.getElementById('youtubeIframe').src = "https://www.youtube.com/embed/" + youtubeId + "?autoplay=1";
+      document.getElementById('videoModal').style.display = "flex";
+    }
+
+    function closeVideoModal() {
+      document.getElementById('youtubeIframe').src = "";
+      document.getElementById('videoModal').style.display = "none";
+    }
+
+    // 40 QUESTIONS SELECTION (10 Celeste/UNIP • 15 Concursos • 15 OAB/FGV)
+    const questionsData = [
+      // --- BLOCO 1: Noemia / UNIP (10 Questões) ---
+      {
+        id: 1,
+        cat: "Noemia / UNIP",
+        text: "Uma ficha registra 'autônomo', mas a rotina revela pessoa física, pessoalidade, pagamento, não eventualidade e ordens empresariais. Deve prevalecer:",
+        options: ["O nome dado pelas partes no contrato civil.", "A realidade efetivamente comprovada pelos fatos.", "A forma escrita civil por ter sido assinada.", "A vontade do tomador de serviço."],
+        correct: 1, // B
+        exp: "Pelo Princípio da Primazia da Realidade (Art. 9º da CLT), a execução real do contrato prevalece sobre rótulos formais fraudulentos."
+      },
+      {
+        id: 2,
+        cat: "Noemia / UNIP",
+        text: "Quando duas interpretações juridicamente possíveis de uma mesma norma trabalhista subsistem, o vetor protetivo autoriza:",
+        options: ["Criar direito sem base normativa.", "Ignorar negociação coletiva válida.", "Escolher a versão do empregador.", "Adotar a leitura mais favorável ao trabalhador (in dubio pro operario)."],
+        correct: 3, // D
+        exp: "Aplicação do princípio protetor em sua vertente interpretativa ('in dubio pro operario')."
+      },
+      {
+        id: 3,
+        cat: "Noemia / UNIP",
+        text: "A expressão 'relação de trabalho' é juridicamente qualificada como:",
+        options: ["Gênero do qual a relação de emprego é espécie.", "Sinônimo exato de relação de emprego.", "Espécie exclusiva do trabalho autônomo.", "Regime exclusivo de servidores públicos."],
+        correct: 0, // A
+        exp: "Relação de trabalho abrange qualquer esforço humano regulado pelo direito; emprego é a espécie qualificada pelos requisitos do Art. 3º da CLT."
+      },
+      {
+        id: 4,
+        cat: "Noemia / UNIP",
+        text: "Qual conjunto reúne os elementos fático-jurídicos essenciais do vínculo de emprego (Art. 3º da CLT)?",
+        options: ["Exclusividade, eventualidade e gratuidade.", "Pessoa jurídica, autonomia e assunção do risco.", "Pessoa física, pessoalidade, não eventualidade, onerosidade e subordinação.", "Diploma universitário e registro no MTE."],
+        correct: 2, // C
+        exp: "Os requisitos cumulativos são: Pessoa física, Pessoalidade, Não eventualidade, Onerosidade e Subordinação jurídica (P-P-N-O-S)."
+      },
+      {
+        id: 5,
+        cat: "Noemia / UNIP",
+        text: "A empresa tem prejuízo em determinado mês e pretende descontar do salário do empregado. O princípio da alteridade dita que:",
+        options: ["O empregado participa obrigatoriamente do prejuízo.", "Os riscos da atividade econômica pertencem exclusivamente ao empregador.", "O salário se converte em taxa de parceria.", "Prejuízo empresarial gera justa causa."],
+        correct: 1, // B
+        exp: "Pelo Princípio da Alteridade (Art. 2º da CLT), o empregador assume integralmente os riscos do negócio."
+      },
+      {
+        id: 6,
+        cat: "Noemia / UNIP",
+        text: "Estudante realiza estágio não obrigatório regular. A concessão de bolsa e auxílio-transporte é:",
+        options: ["Facultativa em qualquer modalidade de estágio.", "Obrigatória apenas no estágio curricular obrigatório.", "Compulsória por lei no estágio não obrigatório.", "Proibida para evitar vínculo de emprego."],
+        correct: 2, // C
+        exp: "Art. 12 da Lei nº 11.788/2008: No estágio não obrigatório, a bolsa e o auxílio-transporte são compulsórios."
+      },
+      {
+        id: 7,
+        cat: "Noemia / UNIP",
+        text: "Estagiário de Direito passa meses apenas vendendo produtos em loja sem supervisão. A consequência legal é:",
+        options: ["Reconhecimento do vínculo de emprego pelo desvirtuamento do estágio.", "Nulidade de todo salário recebido.", "Conversão automática em trabalho voluntário.", "Impossibilidade de vínculo por haver termo assinado."],
+        correct: 0, // A
+        exp: "O desvirtuamento das exigências da Lei do Estágio (Art. 3º, §2º) atrai o reconhecimento do vínculo direto com a concedente."
+      },
+      {
+        id: 8,
+        cat: "Noemia / UNIP",
+        text: "Profissional organiza livremente o modo, o tempo e os meios do serviço e assume os riscos sem subordinação. Trata-se de:",
+        options: ["Trabalho subordinado.", "Trabalho avulso.", "Trabalho temporário.", "Trabalho autônomo."],
+        correct: 3, // D
+        exp: "Art. 442-B da CLT: A ausência de subordinação jurídica e a gestão dos próprios riscos caracterizam o trabalhador autônomo."
+      },
+      {
+        id: 9,
+        cat: "Noemia / UNIP",
+        text: "Nos termos do art. 442 da CLT, o contrato individual de trabalho é definido como:",
+        options: ["Apenas a escritura pública registrada.", "O acordo tácito ou expresso correspondente à relação de emprego.", "A prestação voluntária e gratuita.", "O contrato solene obrigatoriamente escrito."],
+        correct: 1, // B
+        exp: "Literalidade do Art. 442 da CLT: Contrato individual é o acordo tácito ou expresso correspondente à relação de emprego."
+      },
+      {
+        id: 10,
+        cat: "Noemia / UNIP",
+        text: "Contrato de experiência de 30 dias foi prorrogado por mais 30 dias e, depois, por mais 30 dias. A consequência legal é:",
+        options: ["Validade como experiência de 90 dias.", "Nulidade imediata do contrato.", "Conversão automática em contrato por prazo indeterminado.", "Conversão em contrato temporário."],
+        correct: 2, // C
+        exp: "Art. 451 da CLT: O contrato a termo prorrogado mais de uma vez converte-se automaticamente em prazo indeterminado."
+      },
+
+      // --- BLOCO 2: CONCURSOS PÚBLICOS (15 Questões) ---
+      {
+        id: 11,
+        cat: "Concurso • PGE-GO",
+        text: "Em relação aos princípios do Direito do Trabalho, com base no Princípio da Primazia da Realidade:",
+        options: ["O documento escrito sobrepõe-se aos fatos.", "A alteração do empregador extingue o contrato.", "O ônus da prova do fim do vínculo é do empregado.", "O juiz privilegia a situação de fato devidamente comprovada em detrimento dos documentos."],
+        correct: 3, // D
+        exp: "A verdade real comprovada nos autos se sobrepõe à forma ou ao documento formal."
+      },
+      {
+        id: 12,
+        cat: "Concurso • PGE-TO",
+        text: "O encargo de provar o término do contrato de trabalho, quando negados a prestação e o despedimento, é do empregador. Esse entendimento da Súmula 212 do TST baseia-se no princípio da:",
+        options: ["Primazia da realidade.", "Irrenunciabilidade.", "Continuidade da relação de emprego.", "Boa-fé objetiva."],
+        correct: 2, // C
+        exp: "Súmula 212 do TST: Presume-se a continuidade do vínculo de emprego, cabendo ao empregador provar a rescisão."
+      },
+      {
+        id: 13,
+        cat: "Concurso • PG-DF",
+        text: "O princípio da norma mais favorável opera em tríplice dimensão: informadora, interpretativa/normativa e hierarquizante. Assinale a alternativa correta:",
+        options: ["A afirmação está CORRETA.", "A afirmação está ERRADA.", "O princípio aplica-se apenas ao processo.", "É inconstitucional."],
+        correct: 0, // A
+        exp: "A doutrina (Américo Plá Rodriguez) atribui exatamente essas três funções ao princípio da norma mais favorável."
+      },
+      {
+        id: 14,
+        cat: "Concurso • Mag. Trabalho",
+        text: "Sobre os princípios do Direito do Trabalho: I. Primazia da realidade permite descaracterizar fraude civil. II. A alteração no sujeito empregador não altera os contratos de trabalho. Assinale a correta:",
+        options: ["Apenas I é correta.", "Apenas II é correta.", "Nenhuma é correta.", "Ambas as assertivas I e II estão corretas."],
+        correct: 3, // D
+        exp: "I reflete o Art. 9º da CLT; II reflete o princípio da despersonalização do empregador / sucessão (Arts. 10 e 448 da CLT)."
+      },
+      {
+        id: 15,
+        cat: "Concurso • TST / FGV",
+        text: "Na aplicação do princípio da norma mais favorável pelo critério da Teoria do Conglobamento, exige-se:",
+        options: ["Pinçar cláusulas isoladas de cada norma.", "Confronto em bloco (conjunto) dos instrumentos normativos para escolher o mais favorável.", "Aplicação exclusiva da CLT.", "Anulação de acordos coletivos."],
+        correct: 1, // B
+        exp: "A Teoria do Conglobamento determina a comparação do conjunto de regras de cada instrumento para definir o mais favorável."
+      },
+      {
+        id: 16,
+        cat: "Concurso • AGU",
+        text: "Com referência à prestação de serviços em regime de teletrabalho (Art. 75-B da CLT), assinale a correta:",
+        options: ["O teletrabalho é proibido a estagiários.", "Pode ser prestado apenas por produção.", "O comparecimento pontual às dependências do empregador para atividades específicas não descaracteriza o teletrabalho.", "Aplica-se apenas a servidores públicos."],
+        correct: 2, // C
+        exp: "Art. 75-B, §1º da CLT: Comparecimentos presenciais para tarefas específicas não descaracterizam o regime de teletrabalho."
+      },
+      {
+        id: 17,
+        cat: "Concurso • MPT",
+        text: "Dentre os elementos caracterizadores do contrato de emprego contidos no Art. 3º da CLT, NÃO está incluída a:",
+        options: ["Eventualidade dos serviços prestados.", "Subordinação jurídica.", "Pessoalidade.", "Onerosidade."],
+        correct: 0, // A
+        exp: "O requisito é a NÃO EVENTUALIDADE. A eventualidade afasta a relação de emprego."
+      },
+      {
+        id: 18,
+        cat: "Concurso • MPT",
+        text: "Analise a Lei do Estágio (11.788/08): I. Estágio é ato educativo supervisionado. II. Exige matrícula e termo de compromisso. III. Descumprimento gera vínculo de emprego com concedente privada.",
+        options: ["Apenas I e II estão corretas.", "Apenas II e III estão corretas.", "Todas as assertivas I, II e III estão corretas.", "Nenhuma é correta."],
+        correct: 2, // C
+        exp: "Todas as assertivas refletem com exatidão os arts. 1º, 3º e 15 da Lei nº 11.788/2008."
+      },
+      {
+        id: 19,
+        cat: "Concurso • MPT",
+        text: "Nos termos da Lei do Trabalho Voluntário (Lei nº 9.608/1998):",
+        options: ["O voluntário pode receber salário sob comissão.", "O ressarcimento de despesas comprovadamente realizadas no serviço não descaracteriza o voluntariado.", "O termo de adesão é dispensável.", "Gera vínculo de emprego automático."],
+        correct: 1, // B
+        exp: "Art. 3º, parágrafo único da Lei 9.608/98: O ressarcimento de despesas comprovadas não descaracteriza o trabalho voluntário."
+      },
+      {
+        id: 20,
+        cat: "Concurso • TRT-1",
+        text: "Considere a Lei nº 11.788/2008 (Estágio): I. A duração do estágio para a mesma concedente não pode exceder 2 anos (salvo PCD). II. No estágio não obrigatório, bolsa e transporte são compulsórios.",
+        options: ["Apenas I é correta.", "Ambas as assertivas I e II estão corretas.", "Apenas II é correta.", "Nenhuma é correta."],
+        correct: 1, // B
+        exp: "I reflete o Art. 11 (limite de 2 anos); II reflete o Art. 12 (obrigatoriedade de bolsa/transporte no não obrigatório)."
+      },
+      {
+        id: 21,
+        cat: "Concurso • MPT",
+        text: "O trabalho executado no domicílio do empregado ou à distância (Art. 6º da CLT):",
+        options: ["Equipara-se ao trabalho realizado no estabelecimento quando presentes os requisitos do emprego.", "É sempre considerado trabalho autônomo.", "Não permite controle de jornada em nenhuma hipótese.", "Exige obrigatoriamente redução salarial."],
+        correct: 0, // A
+        exp: "Art. 6º, caput da CLT: Não se distingue entre o trabalho realizado no estabelecimento e o executado no domicílio do empregado."
+      },
+      {
+        id: 22,
+        cat: "Concurso • TRT-14",
+        text: "Qual das opções abaixo aponta os elementos que caracterizam a relação de emprego?",
+        options: ["Trabalho por PJ, autonomia e eventualidade.", "Gratuidade, pessoalidade e eventualidade.", "Exclusividade, subordinação e pessoa jurídica.", "Pessoa física, pessoalidade, não eventualidade, onerosidade e subordinação."],
+        correct: 3, // D
+        exp: "Definição do Art. 3º da CLT combinada com o Art. 2º."
+      },
+      {
+        id: 23,
+        cat: "Concurso • Mag. Trabalho",
+        text: "Empregador rescinde antecipadamente contrato a termo sem justa causa e sem cláusula assecuratória do direito recíproco. Deverá pagar ao empregado:",
+        options: ["Apenas o saldo de salário prestado.", "Indenização correspondente à metade da remuneração a que teria direito até o termo do contrato (Art. 479).", "Aviso prévio proporcional de 60 dias.", "Nenhum valor extra por já ter prazo fixo."],
+        correct: 1, // B
+        exp: "Art. 479 da CLT: Rescisão imotivada antes do prazo obriga o pagamento de metade da remuneração restante."
+      },
+      {
+        id: 24,
+        cat: "Concurso • TRT",
+        text: "Celebrado novo contrato por prazo determinado com o mesmo empregado após 4 meses do término do anterior. O novo contrato será considerado:",
+        options: ["Válido como nova experiência.", "Nulo sem direito a salário.", "Por prazo indeterminado (Art. 452 da CLT).", "Contrato temporário da Lei 6.019."],
+        correct: 2, // C
+        exp: "Art. 452 da CLT: Intervalo inferior a 6 meses entre contratos a termo converte o segundo em prazo indeterminado."
+      },
+      {
+        id: 25,
+        cat: "Concurso • MPT",
+        text: "O trabalho temporário disciplinado pela Lei nº 6.019/1974 caracteriza-se por:",
+        options: ["Relação triangular entre empresa de trabalho temporário, tomadora de serviços e trabalhador.", "Prazo máximo rígido de 90 dias sem prorrogação.", "Ser idêntico ao contrato de experiência da CLT.", "Dispensa de contrato por escrito."],
+        correct: 0, // A
+        exp: "Trata-se de regime jurídico especial e triangular para necessidade transitória ou demanda complementar."
+      },
+
+      // --- BLOCO 3: OAB / FGV (15 Questões) ---
+      {
+        id: 26,
+        cat: "OAB / FGV • XXVII Exame",
+        text: "CCT prevê adicional de horas extras de 70%. Acordo Coletivo (ACT) da empresa prevê 60%. De acordo com a CLT, qual adicional prevalece?",
+        options: ["O de 70%, por ser mais benéfico ao trabalhador.", "O de 50%, piso constitucional.", "A média entre os dois adicionais (65%).", "O de 60% previsto no Acordo Coletivo (ACT), que prevalece sobre a CCT."],
+        correct: 3, // D
+        exp: "Art. 620 da CLT (Reforma Trabalhista): As condições estipuladas em Acordo Coletivo (ACT) prevalecem sobre a Convenção Coletiva (CCT)."
+      },
+      {
+        id: 27,
+        cat: "OAB / FGV • XXVII Exame",
+        text: "Sindicato celebrou acordo coletivo reduzindo o percentual do FGTS de 8% para 3% por 2 anos. Essa cláusula é:",
+        options: ["Válida pelo princípio da prevalência do negociado.", "Válida apenas com autorização do MPT.", "NULA, pois constitui objeto ilícito negociar supressão ou redução de FGTS (Art. 611-B).", "Válida se aprovada por 100% da assembleia."],
+        correct: 2, // C
+        exp: "Art. 611-B, III da CLT: O FGTS é direito indisponível e objeto ilícito de supressão ou redução por negociação coletiva."
+      },
+      {
+        id: 28,
+        cat: "OAB / FGV • VI Exame",
+        text: "A Constituição Federal admite a redução salarial desde que realizada mediante:",
+        options: ["Acordo individual escrito direto com o chefe.", "Decisão unilateral do empregador em crise.", "Aviso prévio indenizado.", "Convenção ou Acordo Coletivo de Trabalho (Art. 7º, VI da CF)."],
+        correct: 3, // D
+        exp: "Art. 7º, VI da CF: Irredutibilidade salarial, salvo o disposto em convenção ou acordo coletivo."
+      },
+      {
+        id: 29,
+        cat: "OAB / FGV • XXIII Exame",
+        text: "Empresa X reduz salário por CCT; Empresa Y reduz por ACT; Empresa Z reduz por acordo individual escrito. Assinale a afirmativa correta:",
+        options: ["Todas as reduções são válidas.", "Todas são inválidas.", "A redução da empresa Z é inválida, pois exigia negociação coletiva.", "A empresa X agiu ilegalmente."],
+        correct: 2, // C
+        exp: "Redução salarial individual é nula. Exige-se participação do Sindicato via CCT ou ACT (Art. 7º, VI da CF)."
+      },
+      {
+        id: 30,
+        cat: "OAB / FGV • XIII Exame",
+        text: "Consultor trabalha de casa, conectado no horário comercial, com assinatura telemática intransferível e ordens diretas. O caso configura:",
+        options: ["Trabalho autônomo sem proteção.", "Prestação de serviço civil por empreitada.", "Trabalho voluntário.", "Relação de emprego, pois o controle telemático equipara-se aos meios presenciais de subordinação."],
+        correct: 3, // D
+        exp: "Art. 6º, parágrafo único da CLT: Meios telemáticos e informatizados de comando caracterizam subordinação jurídica."
+      },
+      {
+        id: 31,
+        cat: "OAB / FGV • X Exame",
+        text: "Qual trabalhador possui igualdade constitucional de direitos com os que têm vínculo empregatício permanente (Art. 7º, XXXIV CF)?",
+        options: ["Trabalhador autônomo.", "Trabalhador voluntário.", "Trabalhador avulso.", "Trabalhador eventual."],
+        correct: 2, // C
+        exp: "Art. 7º, XXXIV da CF: Assegura igualdade de direitos entre o trabalhador com vínculo permanente e o trabalhador avulso."
+      },
+      {
+        id: 32,
+        cat: "OAB / FGV • X Exame",
+        text: "Adriana submete-se a um ato educativo supervisionado em ambiente de trabalho para preparação ao mercado regular. Adriana é:",
+        options: ["Estagiária.", "Aprendiz.", "Cooperativada.", "Empregada."],
+        correct: 0, // A
+        exp: "Conceito exato contido no Art. 1º da Lei nº 11.788/2008 (Lei do Estágio)."
+      },
+      {
+        id: 33,
+        cat: "OAB / FGV • XIV Exame",
+        text: "Maria foi contratada como estagiária de Direito em empresa pública federal, mas ficava apenas no caixa recebendo contas. O caso gera:",
+        options: ["Vínculo de emprego automático com anotação da CTPS.", "Indenização pessoal paga pelo diretor.", "Validade do estágio por ser atividade bancária.", "Impossibilidade de vínculo de emprego com a Administração sem concurso público (Súmula 363 TST)."],
+        correct: 3, // D
+        exp: "Há desvirtuamento, mas o Art. 37, II da CF e a Súmula 363 do TST impedem o vínculo empregatício sem concurso público."
+      },
+      {
+        id: 34,
+        cat: "OAB / FGV • VII Exame",
+        text: "Dentre as medidas disciplinares expressamente previstas no texto da CLT, pode-se afirmar que constam:",
+        options: ["Advertência verbal e censura escrita.", "Somente a suspensão do contrato (Art. 474) e a dispensa por justa causa (Art. 482).", "Multa salarial livre e rebaixamento.", "Suspensão de até 90 dias."],
+        correct: 1, // B
+        exp: "Advertência é aceita pela prática, mas o texto literal da CLT só prevê expressamente Suspensão (Art. 474) e Justa Causa (Art. 482)."
+      },
+      {
+        id: 35,
+        cat: "OAB / FGV • XXIV Exame",
+        text: "Fisioterapeuta trabalha para a empresa A (com CTPS assinada) e, na mesma jornada, atende alunos da empresa B (do mesmo grupo econômico). O caso gera:",
+        options: ["Duplicidade de contratos com responsabilidade subsidiária.", "Duplicidade de contratos autônomos.", "Fraude imediata.", "Contrato único de trabalho, salvo ajuste em contrário (Súmula 129 do TST)."],
+        correct: 3, // D
+        exp: "Súmula 129 do TST: Prestação de serviços a mais de uma empresa do mesmo grupo econômico na mesma jornada gera contrato único."
+      },
+      {
+        id: 36,
+        cat: "OAB / FGV • IV Exame",
+        text: "Com relação ao contrato especial de aprendizagem (Art. 428 da CLT), assinale a correta:",
+        options: ["Pode ser verbal ou tácito.", "Pode durar até 5 anos.", "Salvo condição mais favorável, assegura ao aprendiz o salário mínimo hora.", "Permite prorrogação livre de jornada."],
+        correct: 2, // C
+        exp: "Art. 428, §2º da CLT: Ao aprendiz é garantido o salário mínimo hora, salvo condição mais favorável."
+      },
+      {
+        id: 37,
+        cat: "OAB / FGV • II Exame",
+        text: "A contratação de menor de 18 anos para trabalho noturno, perigoso ou insalubre caracteriza hipótese de:",
+        options: ["Objeto ilícito sem nenhum efeito.", "Trabalho proibido (nulidade protetiva que preserva as verbas trabalhistas do período).", "Trabalho autônomo válido.", "Estágio regular."],
+        correct: 1, // B
+        exp: "É trabalho proibido ao menor. A nulidade preserva os direitos trabalhistas do período para não premiar o empregador infrator."
+      },
+      {
+        id: 38,
+        cat: "OAB / FGV • XIV Exame",
+        text: "Coveiros foram contratados diretamente pelo Município sem concurso público. Dispensados após 1 ano, terão direito a:",
+        options: ["Todas as verbas celetistas e aviso prévio.", "Aviso prévio e multa de 40% do FGTS.", "Apenas os depósitos do FGTS (Súmula 363 do TST).", "Nenhuma verba ou valor."],
+        correct: 2, // C
+        exp: "Súmula 363 do TST: A contratação sem concurso gera nulidade e dá direito apenas ao saldo de salários e aos depósitos do FGTS."
+      },
+      {
+        id: 39,
+        cat: "OAB / FGV • XII Exame",
+        text: "Empreiteira contrata estrangeiros em situação irregular para obra distante, pagando menos que o piso da categoria sem assinar carteira. O caso configura:",
+        options: ["Trabalho proibido.", "Trabalho ilícito.", "Trabalho escravo imediato.", "Trabalho válido."],
+        correct: 0, // A
+        exp: "A atividade de construção é lícita, mas a contratação irregular é trabalho proibido; preservam-se as verbas devidas ao trabalhador."
+      },
+      {
+        id: 40,
+        cat: "OAB / FGV • XXII Exame",
+        text: "Verônica foi contratada por experiência por 30 dias. No 22º dia, foi demitida sem justa causa e sem cláusula assecuratória. Terá direito a:",
+        options: ["Aviso prévio de 30 dias.", "Indenização equivalente à metade da remuneração a que teria direito até o termo do contrato (Art. 479).", "Conversão em prazo indeterminado.", "Apenas saldo de salário."],
+        correct: 1, // B
+        exp: "Art. 479 da CLT: Demissão antecipada imotivada obriga a indenização de 50% dos salários faltantes (8 dias restantes / 2 = 4 dias)."
+      }
+    ];
+
+    let userAnswers = {};
+
+    function renderQuiz() {
+      const container = document.getElementById('quiz-questions-container');
+      container.innerHTML = '';
+
+      questionsData.forEach((q, index) => {
+        const qCard = document.createElement('div');
+        qCard.className = 'quiz-card';
+        qCard.id = `quiz-q-${index}`;
+
+        let optionsHTML = '';
+        const labels = ['A', 'B', 'C', 'D'];
+        q.options.forEach((opt, optIdx) => {
+          optionsHTML += `
+            <button class="option-btn" id="opt-${index}-${optIdx}" onclick="selectOption(${index}, ${optIdx})">
+              <strong>${labels[optIdx]})</strong> ${opt}
+            </button>
+          `;
+        });
+
+        qCard.innerHTML = `
+          <div class="quiz-header">
+            <span class="quiz-badge">${q.cat} • Questão ${index + 1} de 40</span>
+          </div>
+          <div style="font-weight: 600; color: #fff; margin-bottom: 0.5rem;">${q.text}</div>
+          <div class="quiz-options">
+            ${optionsHTML}
+          </div>
+          <div class="explanation-box" id="exp-${index}">
+            <strong><i class="fa-solid fa-gavel"></i> Fundamentação Jurídica:</strong>
+            <p style="margin-top: 0.25rem;">${q.exp}</p>
+          </div>
+        `;
+
+        container.appendChild(qCard);
+      });
+    }
+
+    function selectOption(qIdx, selectedOptIdx) {
+      if (userAnswers[qIdx] !== undefined) return; // Já respondida
+
+      const q = questionsData[qIdx];
+      const isCorrect = (selectedOptIdx === q.correct);
+      userAnswers[qIdx] = { selected: selectedOptIdx, correct: isCorrect };
+
+      // Desabilitar botões da questão
+      q.options.forEach((_, optIdx) => {
+        const btn = document.getElementById(`opt-${qIdx}-${optIdx}`);
+        btn.disabled = true;
+        if (optIdx === q.correct) {
+          btn.classList.add('correct');
+        } else if (optIdx === selectedOptIdx) {
+          btn.classList.add('wrong');
+        }
+      });
+
+      // Exibir explicação
+      const expBox = document.getElementById(`exp-${qIdx}`);
+      expBox.style.display = 'block';
+
+      updateStats();
+    }
+
+    function updateStats() {
+      const answeredKeys = Object.keys(userAnswers);
+      const totalAnswered = answeredKeys.length;
+      let hits = 0;
+      let errors = 0;
+
+      answeredKeys.forEach(k => {
+        if (userAnswers[k].correct) hits++;
+        else errors++;
+      });
+
+      document.getElementById('stat-hits-num').innerText = hits;
+      document.getElementById('stat-errors-num').innerText = errors;
+      
+      const pct = totalAnswered > 0 ? Math.round((hits / totalAnswered) * 100) : 0;
+      document.getElementById('stat-pct-num').innerText = pct + '%';
+
+      const progressPct = Math.round((totalAnswered / questionsData.length) * 100);
+      document.getElementById('quiz-progress-bar').style.width = progressPct + '%';
+    }
+
+    function resetQuiz() {
+      userAnswers = {};
+      document.getElementById('stat-hits-num').innerText = '0';
+      document.getElementById('stat-errors-num').innerText = '0';
+      document.getElementById('stat-pct-num').innerText = '0%';
+      document.getElementById('quiz-progress-bar').style.width = '0%';
+      renderQuiz();
+    }
+
+    // Inicialização ao carregar a página
+    window.onload = function() {
+      renderQuiz();
+    };
+  </script>
+</body>
+</html>
