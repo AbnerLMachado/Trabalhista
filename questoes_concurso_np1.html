@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco de Questões de Concursos & OAB | Triagem NP1 Direito do Trabalho</title>
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --bg-card: #131b2e;
+      --bg-card-hover: #1c2742;
+      --accent-gold: #fbbf24;
+      --accent-blue: #3b82f6;
+      --accent-red: #ef4444;
+      --accent-green: #10b981;
+      --accent-purple: #8b5cf6;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #1f293d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      border-bottom: 1px solid var(--border-color);
+      padding: 2rem 1rem 1rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-title span {
+      color: var(--accent-gold);
+    }
+
+    .subtitle-badge {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid var(--accent-blue);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      width: fit-content;
+    }
+
+    /* Container Main */
+    main.container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Filter Bar */
+    .filter-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .filter-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .filter-btn.active {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+    }
+
+    /* Stats Bar */
+    .quiz-stats-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .stat-hits { color: var(--accent-green); }
+    .stat-errors { color: var(--accent-red); }
+    .stat-pct { color: var(--accent-gold); }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+      transition: width 0.3s ease;
+    }
+
+    /* Question Cards */
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .quiz-card:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .quiz-badge {
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--accent-purple);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .question-id {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-family: monospace;
+    }
+
+    .question-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      white-space: pre-line;
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+
+    .option-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.9rem 1.1rem;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1.5;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: var(--accent-blue);
+    }
+
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2) !important;
+      border-color: var(--accent-green) !important;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: rgba(239, 68, 68, 0.2) !important;
+      border-color: var(--accent-red) !important;
+      color: #fff;
+    }
+
+    .explanation-box {
+      display: none;
+      background: #0f172a;
+      border: 1px solid var(--accent-blue);
+      border-radius: 8px;
+      padding: 1.1rem;
+      margin-top: 1.25rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .reset-btn {
+      background: var(--accent-red);
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .reset-btn:hover {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .brand-title { font-size: 1.4rem; }
+      .quiz-stats-bar { flex-direction: column; align-items: flex-start; }
+      .quiz-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="brand-title">
+        <i class="fa-solid fa-list-check"></i> BANCO DE QUESTÕES <span>TRIAGEM NP1</span>
+      </div>
+      <div class="subtitle-badge">
+        <i class="fa-solid fa-filter"></i> 42 Questões Selecionadas de Concursos & OAB (Foco Exclusivo Aulas 1 a 5)
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Filter Bar -->
+    <div class="filter-card">
+      <div class="filter-title">
+        <i class="fa-solid fa-sliders"></i> Filtrar Questões por Tópico da NP1:
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterTopic('all')">Todas (42)</button>
+        <button class="filter-btn" onclick="filterTopic('principios')">Princípios & Fontes</button>
+        <button class="filter-btn" onclick="filterTopic('vinculo')">Requisitos do Vínculo & Figuras Próximas</button>
+        <button class="filter-btn" onclick="filterTopic('sujeitos')">Sujeitos & Poderes do Empregador</button>
+        <button class="filter-btn" onclick="filterTopic('contrato')">Contrato Individual & Prescrição</button>
+        <button class="filter-btn" onclick="filterTopic('termo')">Contratos a Termo & Experiência</button>
+      </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="quiz-stats-bar">
+      <div class="stat-box">
+        <i class="fa-solid fa-circle-check stat-hits fa-lg"></i>
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Acertos</div>
+          <div class="stat-number stat-hits" id="stat-hits-num">0</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <i class="fa-solid fa-circle-xmark stat-errors fa-lg"></i>
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Erros</div>
+          <div class="stat-number stat-errors" id="stat-errors-num">0</div>
+        </div>
+      </div>
+
+      <div class="stat-box">
+        <i class="fa-solid fa-chart-line stat-pct fa-lg"></i>
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Aproveitamento</div>
+          <div class="stat-number stat-pct" id="stat-pct-num">0%</div>
+        </div>
+      </div>
+
+      <button class="reset-btn" onclick="resetQuiz()"><i class="fa-solid fa-rotate-right"></i> Reiniciar Resoluções</button>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="quiz-progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- Questions Container -->
+    <div id="questions-container">
+      <!-- Rendered dynamically -->
+    </div>
+
+  </main>
+
+  <script>
+    const questionsData = [
+      {
+        id: "Q4402543",
+        topic: "vinculo",
+        banca: "COPEVE/UFAL - FUNDEPES 2026 - IFAL",
+        text: `Uma empresa do ramo financeiro contratou outra empresa para lhe prestar serviços de telemarketing para a oferta de crédito e de outros produtos financeiros no mercado, mediante a utilização de trabalhadores desta última empresa, cujos serviços eram executados nas instalações físicas da empresa contratante. Um determinado empregado da empresa contratada passou a receber ordens diretas de um dos gerentes da empresa contratante que, inclusive, passou a lhe exigir serviços de assessoramento e de secretaria ao referido gestor, a exemplo de controle de agenda pessoal, elaboração e análise de planilhas e documentos, além de pagamentos bancários e outros serviços externos relacionados à gerência da empresa contratante. Chegado ao término do contrato de prestação de serviços entre as empresas, o determinado empregado teve seu contrato de trabalho rescindido sem justa causa, ocasião em que restaram inadimplidas as verbas rescisórias e se verificou a ausência de recolhimento do Fundo de Garantia do Tempo de Serviço e das contribuições previdenciárias. Dadas as afirmativas acerca do caso hipotético,
+
+I. O fato de a empresa tomadora dos serviços contratar trabalhadores terceirizados para uma de suas atividades principais no âmbito de suas dependências, por si só, configuraria a relação de emprego entre a contratante e os empregados da contratada.
+II. O empregado ao trabalhar pessoalmente, de forma habitual e onerosa, sob as ordens diretas do gerente da empresa contratante, em atividades distintas daquelas que foram objeto do contrato com a empresa prestadora de serviços, poderia ter o vínculo de emprego reconhecido diretamente com a empresa tomadora dos serviços, não obstante a relação de terceirização.
+III. Na hipótese, caberia à empresa contratada garantir as condições de segurança, de higiene e de salubridade dos trabalhadores vinculados ao contrato de terceirização com a empresa contratante.
+IV. A empresa contratante é subsidiariamente responsável pelas obrigações trabalhistas referentes aos períodos em que ocorrer a prestação de serviços, incumbindo-lhe a retenção do percentual devido a título de contribuição previdenciária em nome da empresa contratada, em decorrência da prestação dos serviços contratados em seu favor.
+
+verifica-se que está/ão correta/s apenas`,
+        options: [
+          "IV.",
+          "I e III.",
+          "II e IV.",
+          "I, II e III.",
+          "II, III e IV."
+        ],
+        correct: 2,
+        exp: "Fundamentação: A afirmativa II está correta porque a presença de subordinação direta e pessoalidade em favor da tomadora descaracteriza a terceirização legítima e atrai o vínculo empregatício direto (Princípio da Primazia da Realidade / Art. 9º da CLT). A afirmativa IV está correta pois a tomadora responde subsidiariamente pelos débitos trabalhistas (Art. 5º-A, § 5º da Lei 6.019/74 e Súmula 331 do TST). A afirmativa I é incorreta conforme decisão do STF (ADPF 324 / RE 958.252) que admite terceirização em atividade-fim. A afirmativa III é falsa pois a garantia de salubridade e segurança nas instalações físicas incumbe à tomadora (Art. 5º-A, § 3º da Lei 6.019/74)."
+      },
+      {
+        id: "Q4527022",
+        topic: "contrato",
+        banca: "Instituto Avança São Paulo 2026 - Pref. Taiúva",
+        text: "Sobre os requisitos e características do contrato individual de trabalho, assinale a opção correta:",
+        options: [
+          "O contrato de trabalho é sinalagmático apenas quando analisadas prestações individualmente consideradas, podendo haver, em cada uma delas, ausência de reciprocidade obrigacional.",
+          "A natureza de trato sucessivo do contrato de trabalho decorre da continuidade das obrigações no tempo, não se exaurindo em uma única prestação.",
+          "O poder diretivo do empregador é incompatível com a natureza bilateral do contrato de trabalho, pois rompe a equivalência das obrigações assumidas pelas partes.",
+          "A prestação de serviços gratuitos por longo período não afasta a existência do contrato de trabalho, desde que presentes os elementos fático-jurídicos da relação de emprego.",
+          "O contrato de trabalho é necessariamente solene, exigindo forma escrita e registro prévio como condição de validade, sob pena de nulidade absoluta."
+        ],
+        correct: 1,
+        exp: "Fundamentação: O contrato individual de trabalho é um negócio jurídico de trato sucessivo (ou de débito contínuo), pois suas obrigações se renovam continuamente no tempo (trabalho vs. salário), não se exaurindo em um único ato de execução."
+      },
+      {
+        id: "Q4296814",
+        topic: "contrato",
+        banca: "Instituto Avança São Paulo 2026 - Pref. Americana",
+        text: "Em conformidade com a Consolidação das Leis do Trabalho (CLT) e normas correlatas aplicáveis ao processo de admissão de empregados, assinale a alternativa que corretamente apresenta uma obrigação do empregador no momento da admissão:",
+        options: [
+          "Realizar o registro do empregado no eSocial, contendo data de admissão, remuneração e função, antes do início das atividades laborais.",
+          "Solicitar ao empregado exame de gravidez como condição para contratação, desde que ele seja mantido em sigilo.",
+          "Exigir experiência prévia mínima de seis meses para qualquer função, conforme determinação do Ministério do Trabalho.",
+          "Condicionar a contratação ao fornecimento do histórico de crédito do candidato, quando a atividade envolver valores financeiros.",
+          "Solicitar que o empregado assine termo renunciando ao direito de férias proporcionais, desde que registrado em contrato."
+        ],
+        correct: 0,
+        exp: "Fundamentação: O registro do empregado deve ser efetuado no eSocial até o dia imediatamente anterior ao do início da prestação dos serviços (Art. 29 e Art. 41 da CLT). Exame de gravidez é vedado pela Lei 9.029/95; a exigência de experiência prévia não pode EXCEDER 6 meses (Art. 442-A da CLT); e a renúncia a férias viola o princípio da irrenunciabilidade."
+      },
+      {
+        id: "Q4257500",
+        topic: "sujeitos",
+        banca: "Instituto Avança São Paulo 2026 - Pref. Aparecida",
+        text: "Sobre o conceito de empregador conforme disposto na Consolidação das Leis do Trabalho (CLT), assinale a alternativa correta:",
+        options: [
+          "Empregador é apenas a pessoa física que presta serviços de forma habitual e subordinada.",
+          "Considera-se empregador exclusivamente o Estado quando admite servidores públicos concursados.",
+          "Empregador é qualquer pessoa que presta serviços mediante remuneração.",
+          "Considera-se empregador a empresa, individual ou coletiva, que, assumindo os riscos da atividade econômica, admite, assalaria e dirige a prestação pessoal de serviço.",
+          "Empregador é somente aquele que contrata trabalhadores temporários por meio de agência especializada."
+        ],
+        correct: 3,
+        exp: "Fundamentação: Redação exata do Art. 2º, caput, da CLT: 'Considera-se empregador a empresa, individual ou coletiva, que, assumindo os riscos da atividade econômica, admite, assalaria e dirige a prestação pessoal de serviço.'"
+      },
+      {
+        id: "Q4318977",
+        topic: "contrato",
+        banca: "IBADE 2026 - CREF 19",
+        text: `Sobre o contrato individual de trabalho, analise as afirmativas.
+
+I. A alteração contratual exige mútuo consentimento e preservação do equilíbrio, admitindo variações próprias do jus variandi dentro dos limites legais e do conteúdo ocupacional.
+II. A suspensão contratual costuma afastar a prestação de trabalho e o pagamento de salário, com repercussões na contagem de tempo de serviço conforme previsão legal.
+III. O princípio da continuidade influencia a leitura de contratos a termo e de resilição, favorecendo interpretação que reconheça vínculo duradouro quando os fatos apontam permanência.
+IV. O contrato intermitente pressupõe alternância entre prestação e inatividade, com convocação formal e pagamento das parcelas proporcionais ao final de cada período trabalhado.
+V. O empregado hipersuficiente pode pactuar cláusulas com força semelhante à negociação coletiva em matérias autorizadas, observados requisitos de escolaridade e remuneração previstos em lei.
+
+Estão corretas as afirmativas:`,
+        options: [
+          "I, II e III, apenas.",
+          "I, II, III e IV, apenas.",
+          "II, III e V, apenas.",
+          "II, III e IV, apenas.",
+          "I, II, III, IV e V."
+        ],
+        correct: 4,
+        exp: "Fundamentação: Todas as assertivas são corretas. I reflete o Art. 468 da CLT; II expressa a definição de suspensão do contrato; III traz a essência do Princípio da Continuidade (Súmula 212 TST); IV reflete o Art. 452-A da CLT; e V expressa a figura do empregado hipersuficiente do Art. 444, parágrafo único, da CLT."
+      },
+      {
+        id: "Q4365054",
+        topic: "principios",
+        banca: "VUNESP 2026 - Câm. Caraguatatuba",
+        text: "No Direito do Trabalho a regra que, com o intuito de proteger o trabalhador, considerado a parte hipossuficiente da relação empregatícia, impede que novas situações laborais, ainda que previstas em lei ou em negociação coletiva, prevaleçam sobre aquelas mais vantajosas já incorporadas ao contrato individual de trabalho do empregado expressa o princípio trabalhista",
+        options: [
+          "do in dubio pro operario.",
+          "da Primazia da Realidade.",
+          "da Continuidade da Relação de Emprego.",
+          "da Condição Mais Benéfica.",
+          "da Irrenunciabilidade de Direitos."
+        ],
+        correct: 3,
+        exp: "Fundamentação: O Princípio da Condição Mais Benéfica estabelece que as vantagens concedidas ao longo do contrato incorporam-se ao patrimônio jurídico do empregado e não podem ser suprimidas por normas posteriores menos favoráveis (Súmula 51 do TST e Art. 468 da CLT)."
+      },
+      {
+        id: "Q4662873",
+        topic: "vinculo",
+        banca: "Objetiva Concursos 2026 - Pref. Canoas",
+        text: "No que concerne às normas regentes da prestação de serviços fora das dependências do empregador, assinalar a alternativa CORRETA.",
+        options: [
+          "O comparecimento habitual do empregado às dependências da empresa para tarefas específicas não descaracteriza o regime de teletrabalho.",
+          "A adoção do trabalho remoto é vedada para estagiários e aprendizes por exigir controle presencial de jornada e supervisão direta.",
+          "O tempo de uso de softwares fora da jornada normal configura obrigatoriamente tempo à disposição do empregador por presunção legal.",
+          "A prestação de serviços por produção em regime de teletrabalho submete-se integralmente às normas ordinárias de duração do trabalho."
+        ],
+        correct: 0,
+        exp: "Fundamentação: Conforme o Art. 75-B, § 1º, da CLT: 'O comparecimento às dependências do empregador para a realização de atividades específicas, ainda que de modo habitual, não descaracteriza o regime de teletrabalho ou trabalho remoto.'"
+      },
+      {
+        id: "Q4646480",
+        topic: "sujeitos",
+        banca: "FUNDATEC 2026 - CRA RS",
+        text: "Assinale a alternativa que indica corretamente uma situação em que se considera tempo do empregado à disposição do empregador.",
+        options: [
+          "Atividade de alimentação.",
+          "Atividade de higiene pessoal.",
+          "Troca de roupa ou uniforme, quando houver obrigatoriedade de realizar a troca na empresa.",
+          "Quando o empregado, por escolha própria, buscar proteção pessoal, em caso de más condições climáticas, nas dependências da empresa."
+        ],
+        correct: 2,
+        exp: "Fundamentação: Art. 4º, § 2º, VIII, da CLT: A troca de roupa ou uniforme apenas será considerada tempo à disposição do empregador quando houver a obrigatoriedade de realizar a troca na própria empresa."
+      },
+      {
+        id: "Q4416290",
+        topic: "contrato",
+        banca: "SELECON 2026 - EMGEPRON",
+        text: "O empregador, em relação aos trabalhadores que admitir, terá o seguinte prazo, em dias úteis, para anotar a data de admissão, a remuneração e as condições especiais, se houver, facultada a adoção de sistema manual, mecânico ou eletrônico, conforme instruções a serem expedidas pelo Ministério da Economia:",
+        options: [
+          "3",
+          "5",
+          "15",
+          "30"
+        ],
+        correct: 1,
+        exp: "Fundamentação: Redação dada pela Lei nº 13.874/2019 ao Art. 29, caput, da CLT: O empregador terá o prazo de 5 (cinco) dias úteis para efetuar as anotações na Carteira de Trabalho."
+      },
+      {
+        id: "Q4433834",
+        topic: "vinculo",
+        banca: "Fronte Concursos 2026 - Câm. Altinópolis",
+        text: "Pedro presta serviços a uma empresa mediante subordinação e recebimento de salário. Segundo a literalidade da CLT, para que Pedro seja considerado legalmente \"empregado\", os serviços por ele prestados devem ser de natureza:",
+        options: [
+          "Eventual.",
+          "Não eventual.",
+          "Autônoma.",
+          "Transitória."
+        ],
+        correct: 1,
+        exp: "Fundamentação: Art. 3º, caput, da CLT: 'Considera-se empregado toda pessoa física que prestar serviços de natureza não eventual a empregador, sob a dependência deste e mediante salário.'"
+      },
+      {
+        id: "Q4611288",
+        topic: "termo",
+        banca: "FUMARC 2026 - CRA MG",
+        text: "De acordo com a CLT, sobre o contrato intermitente, é INCORRETO afirmar:",
+        options: [
+          "O empregador convocará, por qualquer meio de comunicação eficaz, para a prestação de serviços, informando qual será a jornada, com, pelo menos, três dias corridos de antecedência.",
+          "O contrato de trabalho intermitente é o contrato tácito ou expresso, que deve conter especificamente o valor da hora de trabalho, que não pode ser inferior ao valor horário do salário-mínimo ou àquele devido aos demais empregados do estabelecimento que exerçam a mesma função em contrato intermitente ou não.",
+          "A recusa da oferta não descaracteriza a subordinação para fins do contrato de trabalho intermitente.",
+          "O período de inatividade não será considerado tempo à disposição do empregador, podendo o trabalhador prestar serviços a outros contratantes."
+        ],
+        correct: 1,
+        exp: "Fundamentação: A alternativa B está incorreta porque o contrato de trabalho intermitente deve ser celebrado OBRIGATORIAMENTE POR ESCRITO (Art. 452-A, caput, da CLT), sendo incompatível com a forma tácita."
+      },
+      {
+        id: "Q4303654",
+        topic: "vinculo",
+        banca: "CEPUERJ 2026 - UERJ",
+        text: "Um motorista de aplicativo procurou um advogado para mover ação com pedido de reconhecimento de vínculo empregatício contra o suposto empregador. Considerando a existência de uma subordinação nos moldes do art. 3º da CLT, é correto afirmar que a:",
+        options: [
+          "subordinação jurídica disruptiva consiste no vínculo jurídico, oriundo de aparatos tecnológicos no processo produtivo, que separa o empregado do empregador",
+          "subordinação jurídica, a eventualidade, a pessoalidade e a onerosidade possibilitam ao juiz do trabalho reconhecer o vínculo trabalhista do motorista de aplicativo",
+          "dependência econômica e o controle algorítmico não poderiam ensejar o reconhecimento do vínculo de emprego, pois apesar de o motorista ficar à disposição permanente do aplicativo, ele pode recusar chamadas dos usuários",
+          "subordinação algorítmica, que consiste na captação de dados pela plataforma digital e permite o gerenciamento da prestação de serviços do motorista, poderá ser utilizada para o reconhecimento de um vínculo de emprego do motorista"
+        ],
+        correct: 3,
+        exp: "Fundamentação: Conforme o Art. 6º, parágrafo único, da CLT, os meios telemáticos e informatizados de comando equiparam-se aos meios pessoais para fins de caracterização da subordinação jurídica (subordinação algorítmica)."
+      },
+      {
+        id: "Q4636659",
+        topic: "termo",
+        banca: "IADES 2026 - CRN 3",
+        text: "No que tange ao contrato de trabalho, assinale a alternativa correta.",
+        options: [
+          "O contrato de experiência pode ser celebrado por prazo máximo de noventa dias, permitida uma única prorrogação.",
+          "O contrato de trabalho por prazo determinado pode ser prorrogado quantas vezes as partes acordarem, desde que não ultrapasse o limite de dois anos.",
+          "A alteração do contrato de trabalho por transferência de local de trabalho depende sempre da anuência do empregado, ainda que haja cláusula de transferência no contrato.",
+          "A suspensão do contrato de trabalho interrompe a contagem do tempo de serviço, não sendo devido o pagamento de salários durante o período.",
+          "A rescisão indireta do contrato de trabalho configura justa causa do empregador, permitindo ao empregado postular as verbas rescisórias e indenizatorias."
+        ],
+        correct: 0,
+        exp: "Fundamentação: Art. 445, parágrafo único (limite de 90 dias para a experiência) e Art. 451 da CLT (admitida apenas uma única prorrogação)."
+      },
+      {
+        id: "Q4491882",
+        topic: "vinculo",
+        banca: "IDCAP 2026 - UEFS",
+        text: `Um trabalhador contratado por fundação de apoio universitário alegou vínculo empregatício, sustentando a presença dos elementos caracterizadores da relação de emprego. A análise jurídica exigiu verificação criteriosa desses requisitos. À luz da legislação trabalhista, analise as afirmativas a seguir e assinale V (verdadeiro) ou F (falso).
+
+(__) A relação de emprego pressupõe, de forma cumulativa, pessoalidade, habitualidade, onerosidade e subordinação.
+(__) A relação de emprego existe sempre que houver prestação eventual de serviços remunerados.
+(__) A subordinação é elemento prescindível para a caracterização do vínculo empregatício.
+(__) A onerosidade é incompatível com contratos de trabalho no setor público.
+
+Assinale a alternativa CORRETA, de cima para baixo.`,
+        options: [
+          "F, V, F, V.",
+          "V, F, F, F.",
+          "F, F, V, F.",
+          "V, V, F, F."
+        ],
+        correct: 1,
+        exp: "Fundamentação: A 1ª é verdadeira (P-P-N-O-S); a 2ª é falsa pois trabalho eventual não gera relação de emprego; a 3ª é falsa pois a subordinação é o elemento essencial; a 4ª é falsa pois empregados públicos celetistas recebem salário."
+      },
+      {
+        id: "Q4296870",
+        topic: "vinculo",
+        banca: "Instituto Avança São Paulo 2026 - Pref. Americana",
+        text: "No âmbito do Direito do Trabalho, a caracterização do vínculo empregatício depende da presença simultânea de determinados requisitos previstos na legislação e consolidados pela jurisprudência. Considerando os elementos essenciais da relação de emprego e as condições que diferenciam o empregado de outras formas de prestação de serviços, analise as afirmativas a seguir e assinale a alternativa correta:",
+        options: [
+          "Será considerado empregado quem prestar serviços de natureza não eventual, de forma subordinada e mediante salário.",
+          "Para ser considerado empregado, é necessário que o trabalhador preste serviços eventuais e sem subordinação ao empregador.",
+          "O vínculo de emprego exige que o serviço seja prestado por pessoa física ou jurídica, desde que haja pagamento de salário.",
+          "Somente haverá relação de emprego quando o trabalhador prestar serviços de forma eventual, mas com habitualidade no pagamento.",
+          "A existência de salário e habitualidade dispensa a necessidade de subordinação para caracterizar o vínculo empregatício."
+        ],
+        correct: 0,
+        exp: "Fundamentação: Requisitos explícitos do Art. 3º da CLT: Pessoa física, Pessoalidade, Não Eventualidade, Onerosidade e Subordinação."
+      },
+      {
+        id: "Q4435909",
+        topic: "contrato",
+        banca: "IFPI 2026 - Professor de Direito",
+        text: "Sobre o contrato de trabalho, assinale a alternativa CORRETA.",
+        options: [
+          "Nos contratos individuais de trabalho só é lícita a alteração das respectivas condições por mútuo consentimento, e ainda assim desde que não resultem, direta ou indiretamente, prejuízos ao empregado, sob pena de nulidade da cláusula infringente desta garantia.",
+          "Em caso de necessidade de serviço o empregador poderá transferir o empregado para localidade diversa da que resultar do contrato, mas, nesse caso, ficará obrigado a um pagamento suplementar, nunca inferior a 25% (vinte e cinco por cento) dos salários que o empregado perceberá na localidade para onde será transferido, enquanto durar essa situação.",
+          "Os empregados da administração pública têm direito à transferência para acompanhar cônjuge ou companheiro servidor público, militar ou empregado público, de qualquer dos Poderes da União, dos Estados, do Distrito Federal e dos Municípios, que tenha sido deslocado a pedido.",
+          "Para fins de contratação, o empregador não exigirá do candidato a emprego comprovação de experiência prévia por tempo superior a 4 (quatro) meses no mesmo tipo de atividade.",
+          "O contrato individual e coletivo de trabalho poderá ser acordado tácita ou expressamente, verbalmente ou por escrito, por prazo determinado ou indeterminado, ou para prestação de trabalho intermitente."
+        ],
+        correct: 0,
+        exp: "Fundamentação: Transcrição literal do Art. 468, caput, da CLT (Princípio da Inalterabilidade Contratual Lesiva)."
+      },
+      {
+        id: "Q4387729",
+        topic: "vinculo",
+        banca: "CESPE/CEBRASPE 2026 - SEMA AM",
+        text: "A respeito das relações de trabalho lato sensu, assinale a opção correta.",
+        options: [
+          "O trabalhador autônomo deve ser a pessoa física, sendo vedada, portanto, a caracterização de trabalhador autônomo aos casos de pessoas jurídicas.",
+          "A prestação de serviços sem vínculo empregatício, com independência na gestão das tarefas e na jornada de trabalho, caracteriza o trabalho avulso.",
+          "Nos casos de contrato de trabalho avulso, a contratação é formalizada diretamente entre o empregado avulso e a empresa tomadora do serviço.",
+          "O trabalhador temporário possui os mesmos direitos do trabalhador contratado por tempo indeterminado.",
+          "O trabalhador autônomo não possui um chefe, e decide quando e onde exercer suas atividades."
+        ],
+        correct: 4,
+        exp: "Fundamentação: O trabalhador autônomo (Art. 442-B da CLT) presta serviços de forma independente e sem subordinação jurídica, gerindo seus próprios meios e rotina de trabalho."
+      },
+      {
+        id: "Q4339600",
+        topic: "termo",
+        banca: "Instituto IACP 2026 - Pref. Santa Luzia",
+        text: "De acordo com as disposições da Consolidação das Leis do Trabalho, é CORRETO afirmar que:",
+        options: [
+          "há vínculo empregatício entre a sociedade cooperativa e seus associados sempre que houver prestação habitual de serviços, independentemente da lei.",
+          "o contrato de experiência pode ser livremente adjusted por até 180 dias, desde que haja acordo escrito entre as partes.",
+          "o contrato por prazo determinado é válido em qualquer situação, desde que o empregador justifique por escrito a conveniência administrativa.",
+          "as relações contratuais podem ser livremente estipuladas, ainda que contrariem normas de proteção ao trabalho, desde que haja vantagem econômica para o empregado.",
+          "não existe vínculo empregatício entre cooperativa e seus associados, e o contrato de experiência, espécie de contrato por prazo determinado, não pode exceder 90 dias."
+        ],
+        correct: 4,
+        exp: "Fundamentação: Art. 442, parágrafo único (inexistência de vínculo entre cooperativa e associados) e Art. 445, parágrafo único da CLT (contrato de experiência com limite máximo de 90 dias)."
+      },
+      {
+        id: "Q4308694",
+        topic: "contrato",
+        banca: "Instituto IBEST 2026 - CRECI DF",
+        text: "Quanto à CLT, assinale a alternativa correta.",
+        options: [
+          "Contrato individual de trabalho é o acordo exclusivamente expresso, correspondente à relação de emprego.",
+          "Para fins de contratação, o empregador não exigirá do candidato a emprego comprovação de experiência prévia por tempo superior a 6 (seis) meses no mesmo tipo de atividade.",
+          "O contrato individual de trabalho poderá ser acordado tácita ou expressamente, verbalmente ou por escrito, apenas por prazo indeterminado.",
+          "O contrato de experiência não poderá exceder de 30 (trinta) dias.",
+          "Qualquer que seja o ramo de atividade da sociedade cooperativa, existe vínculo empregatício entre ela e seus associados, e entre estes e os tomadores de serviços daquela."
+        ],
+        correct: 1,
+        exp: "Fundamentação: Transcrição literal do Art. 442-A da CLT: 'Para fins de contratação, o empregador não exigirá do candidato a emprego comprovação de experiência prévia por tempo superior a 6 (seis) meses no mesmo tipo de atividade.'"
+      },
+      {
+        id: "Q4595437",
+        topic: "vinculo",
+        banca: "FCC 2026 - ALE RR",
+        text: "Consoante jurisprudência firmada na Justiça do Trabalho e no Supremo Tribunal Federal, considerando os elementos de validade do contrato de trabalho,",
+        options: [
+          "o trabalho de menor de 16 anos, mesmo que revestido dos caracteres da relação de emprego, é considerado ilícito, impossibilitando a contagem desse período para fins de aposentadoria.",
+          "uma pessoa que labore em uma banca que comercializa exclusivamente 'jogo do bicho', com a presença dos requisitos do vínculo empregatício, deverá ter essa relação reconhecida, ante a ausência de ilicitude do objeto da prestação de serviços.",
+          "o contrato de trabalho celebrado com ente da Administração Pública Indireta, originalmente considerado nulo por ausência de concurso público, não terá seus efeitos convalidados caso o ente for privatizado posteriormente e o contrato permanecer ativo.",
+          "não é possível o reconhecimento do liame empregatício entre um policial militar que prestar serviços de modo habitual, oneroso, pessoal e subordinado no âmbito doméstico.",
+          "o contrato de servidor público firmado após a CF/88, sem prévia aprovação em concurso público, será considerado nulo, assegurando-se apenas o saldo de salário e o pagamento do FGTS."
+        ],
+        correct: 4,
+        exp: "Fundamentação: Súmula 363 do TST e Tema 308 do STF: A contratação de servidor público sem concurso público após a CF/88 atrai a nulidade absoluta do contrato, mantendo-se apenas o direito ao saldo de salário e aos depósitos do FGTS."
+      },
+      {
+        id: "Q4607784",
+        topic: "sujeitos",
+        banca: "CONSULPAM 2026 - Pref. Pindorama",
+        text: "Com a Reforma Trabalhista, Lei n.º 13.467/2017, o banco de horas pode ser pactuado por acordo individual escrito, desde que a compensação ocorra no período máximo de:",
+        options: [
+          "Um mês.",
+          "Seis meses.",
+          "Um ano.",
+          "Dois anos."
+        ],
+        correct: 1,
+        exp: "Fundamentação: Art. 59, § 5º, da CLT: O banco de horas pode ser pactuado por acordo individual escrito, desde que a compensação ocorra no período máximo de seis meses."
+      },
+      {
+        id: "Q4299442",
+        topic: "contrato",
+        banca: "FGV 2026 - AMAZUL",
+        text: "Juliana trabalhava em uma sociedade empresária por 10 (dez) anos, na qual, desde março de 2025, está aposentada por incapacidade permanente. O seu plano de saúde sempre foi custeado integralmente pela sociedade empresária. Juliana possui como dependentes deste plano sua esposa e dois filhos menores. Diante do custo elevado deste plano de saúde, a empresa pretende migrar Juliana para outro plano mais econômico, com cobertura regional e não mais nacional, na qual serão excluídos todos os seus dependentes. Nesse cenário, quanto ao contrato trabalho e a validade da alteração do plano de saúde, assinale a opção correta",
+        options: [
+          "O contrato de trabalho entre Juliana e a sociedade empresária está extinto e a alteração é válida, em razão do princípio da realidade.",
+          "O contrato de trabalho entre Juliana e a sociedade empresária está extinto e a alteração é inválida, em razão do prejuízo ao trabalhador.",
+          "O contrato de trabalho entre Juliana e a sociedade empresária está em vigor e a alteração é válida, em razão do princípio da onerosidade.",
+          "O contrato de trabalho entre Juliana e a sociedade empresária está suspenso e a alteração é válida, em razão do princípio da realidade.",
+          "O contrato de trabalho entre Juliana e a sociedade empresária está suspenso e a alteração é inválida, em razão da vedação ao prejuízo ao trabalhador."
+        ],
+        correct: 4,
+        exp: "Fundamentação: A aposentadoria por incapacidade permanente SUSPENDE o contrato de trabalho (Art. 475 da CLT). Durante a suspensão, o empregado mantém o direito ao plano de saúde mantido pela empresa (Súmula 440 do TST), e a alteração unilateral que prejudica o trabalhador e seus dependentes é nula (Art. 468 da CLT)."
+      },
+      {
+        id: "Q4662872",
+        topic: "contrato",
+        banca: "Objetiva Concursos 2026 - Pref. Canoas",
+        text: `Acerca das disposições da Consolidação das Leis do Trabalho sobre contrato individual de trabalho, avaliar se as afirmativas são certas (C) ou erradas (E) e assinalar a sequência correspondente.
+
+( ) Para fins de contratação, o empregador pode exigir experiência prévia por tempo superior a seis meses no mesmo tipo de atividade.
+( ) Inexiste vínculo empregatício entre a sociedade cooperativa e seus associados, qualquer que seja o ramo de atividade da instituição.
+( ) A contratação do autônomo, cumpridas as formalidades legais, afasta a qualidade de empregado ainda que haja prestação de forma contínua.
+( ) O contrato individual de trabalho deve ser obrigatoriamente acordado por escrito para que tenha validade jurídica como relação de emprego.`,
+        options: [
+          "C - C - E - C.",
+          "E - C - C - E.",
+          "C - E - C - E.",
+          "E - E - C - C."
+        ],
+        correct: 1,
+        exp: "Fundamentação: 1ª Errada (Art. 442-A veda exigir > 6 meses); 2ª Certa (Art. 442, parágrafo único); 3ª Certa (Art. 442-B); 4ª Errada (Art. 443 admite contrato verbal/tácito)."
+      },
+      {
+        id: "Q4639890",
+        topic: "termo",
+        banca: "IMAIS 2026 - CRAISA",
+        text: "Considera-se trabalho em regime de tempo parcial aquele cuja duração, sem a possibilidade de horas suplementares semanais, não exceda, semanalmente, a",
+        options: [
+          "20 horas.",
+          "24 horas.",
+          "26 horas.",
+          "30 horas."
+        ],
+        correct: 3,
+        exp: "Fundamentação: Art. 58-A, caput, da CLT: 'Considera-se trabalho em regime de tempo parcial aquele cuja duração não exceda a trinta horas semanais, sem a possibilidade de horas suplementares semanais...'"
+      },
+      {
+        id: "Q4296844",
+        topic: "contrato",
+        banca: "Instituto Avança São Paulo 2026 - Pref. Americana",
+        text: "A Consolidação das Leis do Trabalho (CLT) estabelece diferentes formas de constituição do contrato de emprego, permitindo que a relação jurídica entre empregado e empregador seja formalizada por diversos meios, a depender da situação concreta e da forma de prestação de serviços. Considerando as regras legais aplicáveis à formação do contrato de trabalho, assinale a alternativa correta:",
+        options: [
+          "O contrato individual de trabalho somente pode ser firmado por escrito e exclusivamente por prazo indeterminado.",
+          "O contrato de trabalho pode ser adjusted de maneira tácita ou expressa, verbalmente ou por escrito, e por prazo determinado, indeterminado ou intermitente.",
+          "A legislação exige que todo contrato de trabalho seja registrado exclusivamente de forma expressa e com reconhecimento de firma.",
+          "O contrato intermitente é permitido apenas quando houver acordo coletivo específico autorizando sua utilização.",
+          "A CLT admite contrato verbal apenas quando se tratar de trabalhador rural."
+        ],
+        correct: 1,
+        exp: "Fundamentação: Transcrição literal do Art. 443 da CLT."
+      },
+      {
+        id: "Q4431930",
+        topic: "termo",
+        banca: "Quadrix 2026 - CRBM 6ª Região",
+        text: "Texto associado: O contrato de trabalho intermitente é incompatível com a relação de emprego.",
+        options: [
+          "Certo",
+          "Errado"
+        ],
+        correct: 1,
+        exp: "Fundamentação: O contrato de trabalho intermitente é uma modalidade lícita de contrato individual de trabalho com vínculo empregatício, introduzida pela Reforma Trabalhista no Art. 443, § 3º, e Art. 452-A da CLT."
+      },
+      {
+        id: "Q4606917",
+        topic: "principios",
+        banca: "CONSULPAM 2026 - Pref. Pindorama",
+        text: "No campo do Direito do Trabalho, determinados princípios orientam a interpretação das normas trabalhistas, especialmente em situações de conflito ou lacuna normativa. Diante do exposto, assinale a alternativa que apresenta CORRETAMENTE um desses princípios:",
+        options: [
+          "O princípio da proteção favorece a parte economicamente mais forte na relação de trabalho.",
+          "O princípio da primazia da realidade estabelece que os fatos prevalecem sobre os registros formais.",
+          "O princípio da irrenunciabilidade permite ao trabalhador abrir mão de direitos livremente.",
+          "O princípio da igualdade estabelece tratamento idêntico a todos, independentemente de condições concretas."
+        ],
+        correct: 1,
+        exp: "Fundamentação: O Princípio da Primazia da Realidade estabelece a supremacia dos fatos reais demonstrados sobre os documentos, rótulos ou formas escritas."
+      },
+      {
+        id: "Q4593526",
+        topic: "contrato",
+        banca: "FAFIPA 2026 - Câm. Pitangueiras",
+        text: "Um trabalhador de uma empresa privada do Município de Pitangueiras teve seu contrato de trabalho rescindido há três anos e, apenas agora, pretende ajuizar reclamação trabalhista pleiteando verbas decorrentes da relação de emprego. Paralelamente, busca também a realização de anotações em sua CTPS para fins de comprovação perante a Previdência Social. Considerando o regime prescricional previsto na CLT, assinale a alternativa CORRETA.",
+        options: [
+          "A pretensão está integralmente prescrita, inclusive quanto às anotações para fins previdenciários, em razão do decurso do prazo de dois anos após a extinção do contrato.",
+          "A pretensão relativa aos créditos trabalhistas está prescrita, mas a ação para fins de anotação perante a Previdência Social não se submete ao prazo prescricional do art. 11 da CLT.",
+          "A pretensão está integralmente válida, pois o prazo prescricional de dois anos aplica-se apenas a trabalhadores urbanos.",
+          "A pretensão está parcialmente prescrita, podendo o trabalhador pleitear créditos dos últimos cinco anos, independentemente do prazo de dois anos após a rescisão.",
+          "Nenhuma das pretensões está prescrita, pois o prazo prescricional trabalhista é de cinco anos contados do ajuizamento da ação."
+        ],
+        correct: 1,
+        exp: "Fundamentação: Os créditos pecuniários estão prescritos em razão da bienalidade (ajuizamento após 2 anos do término do contrato - Art. 7º, XXIX da CF e Art. 11 da CLT). Todavia, as ações declaratórias para anotação em CTPS visando prova previdenciária são IMPRESCRITÍVEIS (Art. 11, § 1º, da CLT)."
+      },
+      {
+        id: "Q4595434",
+        topic: "termo",
+        banca: "FCC 2026 - ALE RR",
+        text: "O trabalho intermitente é aquele em que há alternância entre períodos de prestação de serviços e de inatividade. Acerca dessa modalidade contratual,",
+        options: [
+          "o STF, em controle concentrado, julgou o contrato intermitente parcialmente inconstitucional, obrigando o pagamento do valor-hora equivalente ou superior ao salário mínimo ou àquele devido aos demais empregados do estabelecimento que exerçam a mesma função em contrato intermitente ou não.",
+          "o período em que o trabalhador intermitente não estiver prestando serviços diretamente ao empregador não se considera tempo de serviço e, portanto, não obriga os recolhimentos fundiários.",
+          "ficará descaracterizada a subordinação em caso de sucessivas recusas do empregado para a prestação de serviços, com o possível desfazimento do contrato, sem que isso acarrete falta grave do empregado.",
+          "o contrato de trabalho intermitente está desprovido de solenidade e, nos períodos de inatividade, o trabalhador não poderá prestar serviços a outros contratantes.",
+          "aceita a oferta para o período de trabalho, caso o empregado injustificadamente desista da prestação dos serviços, deverá indenizar o empregador em valor equivalente à integralidade do período acordado."
+        ],
+        correct: 1,
+        exp: "Fundamentação: Art. 452-A, § 5º, da CLT: O período de inatividade não será considerado tempo à disposição do empregador, podendo o trabalhador prestar serviços a outros contratantes."
+      },
+      {
+        id: "Q4551149",
+        topic: "principios",
+        banca: "Instituto Consulplan 2026 - CFBM",
+        text: "Determinado profissional foi contratado por uma empresa de tecnologia sob a denominação de \"trabalhador autônomo\", emitindo notas fiscais mensais (pejotização). No entanto, o profissional cumpria horários rígidos definidos pela empresa; utilizava e-mail corporativo; submetia-se a avaliações de desempenho semestrais; e não podia se fazer substituir por outrem. Diante da natureza jurídica da relação e dos princípios do Direito do Trabalho, assinale a afirmativa correta.",
+        options: [
+          "A validade do contrato de prestação de serviços autônomos prevalece sobre a realidade fática em razão do princípio da autonomia da vontade, fortalecido após a Reforma Trabalhista (Lei nº 13.467/2017).",
+          "O contrato é nulo de pleno direito por fraude à lei (art. 9º da CLT), mas a nulidade gera efeitos ex tunc, não sendo devida qualquer verba de natureza salarial pelo período trabalhado para evitar o enriquecimento ilícito do trabalhador.",
+          "Por se tratar de profissional de nível superior, a legislação presume a hipersuficiência do contratado, o que impede a descaracterização do contrato de trabalho autônomo, conforme as novas balizas do art. 444, parágrafo único, da CLT.",
+          "Aplica-se ao caso o Princípio da Primazia da Realidade, o qual autoriza a desconsideração da forma jurídica adotada para reconhecer o vínculo de emprego, visto que estão presentes os requisitos da alteridade, subordinação, pessoalidade, onerosidade, e não eventualidade."
+        ],
+        correct: 3,
+        exp: "Fundamentação: Aplicação direta do Princípio da Primazia da Realidade e do Art. 9º da CLT. A maquiagem contratual em 'pejotização' é nula de pleno direito quando demonstrados os elementos do vínculo empregatício."
+      },
+      {
+        id: "Q4632487",
+        topic: "contrato",
+        banca: "Quadrix 2026 - CRQ 5",
+        text: "Acerca do contrato individual de trabalho, assinale a opção correta.",
+        options: [
+          "Na interrupção do contrato de trabalho, cessam tanto a prestação de serviços quanto o pagamento de salários e a contagem do tempo de serviço.",
+          "A alteração do local de trabalho que exija mudança de domicílio prescinde, em regra, de anuência.",
+          "As férias anuais remuneradas configuram hipótese de suspensão do contrato de trabalho.",
+          "O empregado poderá deixar de comparecer ao serviço sem prejuízo do salário por até 24h, quando tiver que comparecer a juízo.",
+          "Em caso de auxílio-enfermidade, o empregado é considerado em licença não remunerada, durante o prazo desse benefício."
+        ],
+        correct: 4,
+        exp: "Fundamentação: Art. 476 da CLT: 'Em caso de seguro-doença ou auxílio-enfermidade, o empregado é considerado em licença não remunerada, durante o prazo desse benefício.' (Hipótese clássica de suspensão do contrato)."
+      },
+      {
+        id: "Q4636658",
+        topic: "principios",
+        banca: "IADES 2026 - CRN 3",
+        text: "Considerando-se os princípios do direito do trabalho, é correto afirmar que o princípio da",
+        options: [
+          "proteção admite a flexibilização das normas trabalhistas mediante acordo individual, independentemente de previsão legal.",
+          "primazia da realidade determina que, em caso de divergência entre o contrato escrito e a realidade fática, prevalece o documento formal.",
+          "continuidade da relação de emprego favorece a manutenção do vínculo empregatício, presumindo-se a continuidade do emprego em caso de dúvida.",
+          "irrenunciabilidade de direitos trabalhistas é absoluto, não admitindo exceções mesmo em caso de transação judicial homologada.",
+          "inalterabilidade contratual lesiva veda qualquer modificação das condições de trabalho, ainda que benéfica ao empregado."
+        ],
+        correct: 2,
+        exp: "Fundamentação: O Princípio da Continuidade da Relação de Emprego estabelece a presunção favorável à manutenção do vínculo empregatício por prazo indeterminado (Súmula 212 do TST)."
+      },
+      {
+        id: "Q4484956",
+        topic: "vinculo",
+        banca: "COMPEC - UFAM 2026",
+        text: "A Consolidação das Leis do Trabalho (CLT) considera empregada pessoa física que prestar serviços ___________I___________ a um empregador, sob dependência deste e mediante _____II____ . Assinale a alternativa que preenche, CORRETAMENTE, as lacunas do texto:",
+        options: [
+          "I: de natureza não eventual; II: salário.",
+          "I: de natureza eventual; II: salário.",
+          "I: de natureza eventual; II: pagamento de uma diária.",
+          "I: de natureza eventual; II: salário da profissão.",
+          "I: de natureza não eventual; II: salário da profissão."
+        ],
+        correct: 0,
+        exp: "Fundamentação: Preenchimento exato dos termos do Art. 3º, caput, da CLT."
+      },
+      {
+        id: "Q4393157",
+        topic: "vinculo",
+        banca: "IDCAP 2026 - INOVA Capixaba",
+        text: "Um analista de departamento pessoal precisa validar a admissão de um novo colaborador para garantir que a relação jurídica esteja correta conforme a Consolidação das Leis do Trabalho (CLT). A relação de emprego é caracterizada pela presença simultânea de requisitos específicos, como a prestação de serviço por pessoa física com pessoalidade. Assinale a alternativa que indica corretamente os demais requisitos essenciais para a configuração do vínculo empregatício.",
+        options: [
+          "Pessoalidade, voluntariado e eventualidade.",
+          "Subordinação, eventualidade e gratuidade.",
+          "Autonomia, onerosidade e impessoalidade.",
+          "Eventualidade, gratuidade e autonomia.",
+          "Não eventualidade, onerosidade e subordinação."
+        ],
+        correct: 4,
+        exp: "Fundamentação: Os elementos essenciais da relação de emprego (P-P-N-O-S) envolvem Pessoa física, Pessoalidade, Não eventualidade, Onerosidade e Subordinação."
+      },
+      {
+        id: "Q4375530",
+        topic: "vinculo",
+        banca: "Instituto Access 2026 - CRM PA",
+        text: "Empresa pública manteve trabalhador por sucessivos contratos temporários, apesar da presença contínua de subordinação, pessoalidade, habitualidade e onerosidade. Instada a avaliar a situação sob a ótica trabalhista, a consultoria jurídica analisou o caso à luz da primazia da realidade. Diante disso, assinale a alternativa CORRETA.",
+        options: [
+          "A contratação é lícita, pois empresas públicas não se submetem aos requisitos do vínculo empregatício.",
+          "O vínculo é nulo, sem repercussões jurídicas ou trabalhistas para as partes envolvidas.",
+          "Está caracterizada relação de emprego, independentemente da forma contratual adotada.",
+          "Trata-se de relação de trabalho válida, em razão da natureza jurídica da empresa pública contratante."
+        ],
+        correct: 2,
+        exp: "Fundamentação: Pelo Princípio da Primazia da Realidade, a presença dos requisitos fático-jurídicos descaracteriza a maquiagem do contrato temporário e revela a relação de emprego de fato."
+      },
+      {
+        id: "Q4631891",
+        topic: "sujeitos",
+        banca: "FGV 2026 - NAV Brasil",
+        text: `À luz das disposições da Consolidação das Leis do Trabalho (CLT), avalie as afirmativas a seguir.
+
+I. Não se distingue entre o trabalho realizado no estabelecimento do empregador, o executado no domicílio do empregado e o realizado à distância, desde que estejam caracterizados os pressupostos da relação de emprego.
+II. Os meios telemáticos e informatizados de comando, controle e supervisão se equiparam, para fins de subordinação jurídica, aos meios pessoais e diretos de comando, controle e supervisão do trabalho alheio.
+III. Qualquer alteração na estrutura jurídica da empresa não afetará os direitos adquiridos por seus empregados.
+
+Nesse cenário, considerando as disposições da Consolidação das Leis do Trabalho (CLT), está correto o que se afirma em`,
+        options: [
+          "I, apenas.",
+          "II, apenas.",
+          "III, apenas.",
+          "I e III, apenas.",
+          "I, II e III."
+        ],
+        correct: 4,
+        exp: "Fundamentação: I e II refletem o Art. 6º, caput e parágrafo único da CLT; III reflete a regra de proteção contra alteração na estrutura jurídica da empresa (Art. 10 e Art. 448 da CLT)."
+      },
+      {
+        id: "Q4651704",
+        topic: "sujeitos",
+        banca: "CESPE/CEBRASPE 2026 - UNEAL",
+        text: "Texto associado: A prestação de serviços a mais de uma empresa do mesmo grupo econômico, durante a mesma jornada de trabalho, não caracteriza a coexistência de mais de um contrato de trabalho, salvo ajuste em contrário.",
+        options: [
+          "Certo",
+          "Errado"
+        ],
+        correct: 0,
+        exp: "Fundamentação: Transcrição exata da Súmula 129 do Tribunal Superior do Trabalho (Unicidade contratual no grupo econômico)."
+      },
+      {
+        id: "Q4552969",
+        topic: "principios",
+        banca: "VUNESP 2026 - Prefeitura",
+        text: "Considerando a Consolidação das Leis do Trabalho (CLT), as disposições constitucionais e a interpretação sistemática das fontes do Direito do Trabalho, assinale a alternativa correta em relação ao princípio da proteção ao trabalhador e a sua aplicação na integração e interpretação das normas trabalhistas.",
+        options: [
+          "O princípio in dubio pro operário permite que o juiz, diante de lacuna normativa, deixe de aplicar qualquer norma, aguardando manifestação legislativa, pois a integração analógica é vedada no Direito do Trabalho.",
+          "Segundo a CLT, na falta de disposições legais ou contratuais, a Justiça do Trabalho pode decidir, entre outras fontes, pelo direito comparado, desde que o empregador expressamente consinta com sua aplicação.",
+          "A Constituição Federal de 1988 prevê que a renúncia e a transação de direitos trabalhistas pelo empregado são igualmente válidas em qualquer momento, desde que realizadas perante o sindicato da categoria.",
+          "O art. 8º da CLT autoriza o uso da equidade, do direito comparado, dos princípios gerais do direito e de outros ramos do direito como fontes subsidiárias para suprir lacunas, vedando-se apenas o uso de analogia.",
+          "De acordo com a CLT, o direito comum será fonte subsidiária do Direito do Trabalho, sendo sua aplicação condicionada à compatibilidade com os princípios fundamentais desse ramo jurídico, em observância ao diálogo entre as normas materiais e processuais."
+        ],
+        correct: 4,
+        exp: "Fundamentação: Art. 8º, § 1º, da CLT: 'O direito comum será fonte subsidiária do direito do trabalho', exigindo-se compatibilidade com seus princípios fundamentais."
+      },
+      {
+        id: "Q4286351",
+        topic: "principios",
+        banca: "VUNESP 2026 - Câm. Nova Odessa",
+        text: "Relativamente às fontes, aos princípios e aos métodos de interpretação, à integração e à aplicação do Direito do Trabalho, assinale a alternativa correta.",
+        options: [
+          "As convenções e acordos coletivos de trabalho são considerados fontes materiais heterônomas do Direito do Trabalho, pois decorrem da atuação das partes na produção normativa.",
+          "Na aplicação das normas trabalhistas, observada a hierarquia normativa, o intérprete deve adotar o princípio da norma mais favorável ao trabalhador com objetivo de lhe proporcionar sempre a condição mais benéfica.",
+          "O princípio da proteção, norteador do Direito do Trabalho, manifesta-se, entre outros, pelos critérios da aplicação da norma mais favorável, da condição mais benéfica e da primazia da realidade sobre a forma.",
+          "A analogia e os costumes não são admitidos como formas de integração do Direito do Trabalho.",
+          "As Súmulas do Tribunal Superior do Trabalho podem criar obrigações trabalhistas que não estejam previstas em lei, tendo em vista a inaplicabilidade da legalidade ao direito processual."
+        ],
+        correct: 2,
+        exp: "Fundamentação: O princípio protetor manifesta-se em diversas dimensões operacionais, desdobrando-se no critério da norma mais favorável, condição mais benéfica, in dubio pro operario e conexo à primazia da realidade."
+      },
+      {
+        id: "Q4402543B",
+        topic: "termo",
+        banca: "TRT / MPT Concursos 2026",
+        text: "Em relação às figuras especiais de contratação e transitoriedade, nos termos do Art. 443, § 2º da CLT, o contrato por prazo determinado é válido exclusivamente quando se tratar de:",
+        options: [
+          "Qualquer atividade em que o empregador declare necessidade econômica temporária sem comprovação.",
+          "Serviço cuja natureza ou transitoriedade justifique a predeterminação do prazo, atividades empresariais de caráter transitório ou contrato de experiência.",
+          "Contratação de profissionais qualificados com curso superior em qualquer hipótese.",
+          "Substituição provisória em caso de greve abusiva."
+        ],
+        correct: 1,
+        exp: "Fundamentação: Hipóteses taxativas das alíneas 'a', 'b' e 'c' do § 2º do Art. 443 da CLT."
+      },
+      {
+        id: "Q4452101",
+        topic: "termo",
+        banca: "TRT 2ª Região / Magistratura do Trabalho",
+        text: "Considerando o disposto na CLT a respeito do contrato de trabalho a termo e suas prorrogações (Arts. 445, 451 e 452), assinale a afirmativa correta:",
+        options: [
+          "O contrato de experiência pode ser prorrogado por até três vezes, desde que o prazo total não ultrapasse 90 dias.",
+          "O contrato por prazo determinado pode ter duração de até 3 anos quando contratado para serviço transitório.",
+          "O contrato por prazo determinado que for prorrogado mais de uma vez passará a vigorar como contrato por prazo indeterminado.",
+          "Na sucessão de contratos a termo, o intervalo mínimo exigido por lei entre os contratos é de 30 dias."
+        ],
+        correct: 2,
+        exp: "Fundamentação: Art. 451 da CLT: 'O contrato de trabalho por prazo determinado que for prorrogado mais de uma vez passará a vigorar como contrato por prazo indeterminado.'"
+      },
+      {
+        id: "Q4582910",
+        topic: "principios",
+        banca: "MPT / Procuradoria do Trabalho",
+        text: "Em relação ao Princípio da Primazia da Realidade e à figura do empregador no Direito do Trabalho, assinale a opção correta:",
+        options: [
+          "A alteração na estrutura jurídica da empresa invalida os contratos de trabalho celebrados antes da modificação.",
+          "Os acordos verbais entre empregado e empregador são nulos de pleno direito por ausência de forma escrita.",
+          "A caracterização da relação de emprego independe da denominação dada pelas partes ao contrato, prevalecendo a situação fática de subordinação, pessoalidade, onerosidade e não eventualidade.",
+          "O empregador pode transferir os riscos de prejuízos do empreendimento aos empregados desde que haja previsão em regulamento interno."
+        ],
+        correct: 2,
+        exp: "Fundamentação: Princípio da Primazia da Realidade e Art. 9º da CLT: Os fatos concretos sobrepõem-se a qualquer título ou fórmula jurídica empregada no papel."
+      }
+    ];
+
+    let userAnswers = {};
+    let currentFilter = 'all';
+
+    function renderQuestions() {
+      const container = document.getElementById('questions-container');
+      container.innerHTML = '';
+
+      const filtered = questionsData.filter(q => currentFilter === 'all' || q.topic === currentFilter);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 3rem;">Nenhuma questão encontrada para este tópico.</div>`;
+        return;
+      }
+
+      filtered.forEach((q) => {
+        const globalIndex = questionsData.findIndex(item => item.id === q.id);
+        const qCard = document.createElement('div');
+        qCard.className = 'quiz-card';
+        qCard.id = `quiz-q-${globalIndex}`;
+
+        let optionsHTML = '';
+        const labels = ['A', 'B', 'C', 'D', 'E'];
+        q.options.forEach((opt, optIdx) => {
+          optionsHTML += `
+            <button class="option-btn" id="opt-${globalIndex}-${optIdx}" onclick="selectOption(${globalIndex}, ${optIdx})">
+              <strong>${labels[optIdx]})</strong> ${opt}
+            </button>
+          `;
+        });
+
+        qCard.innerHTML = `
+          <div class="quiz-header">
+            <span class="quiz-badge">${q.banca}</span>
+            <span class="question-id">Questão ${globalIndex + 1} de ${questionsData.length} • [${q.id}]</span>
+          </div>
+          <div class="question-text">${q.text}</div>
+          <div class="quiz-options">
+            ${optionsHTML}
+          </div>
+          <div class="explanation-box" id="exp-${globalIndex}">
+            <strong style="color: var(--accent-gold); display: block; margin-bottom: 0.4rem;">
+              <i class="fa-solid fa-scale-balanced"></i> Gabarito Comentado:
+            </strong>
+            <p style="color: #e2e8f0;">${q.exp}</p>
+          </div>
+        `;
+
+        container.appendChild(qCard);
+
+        if (userAnswers[globalIndex] !== undefined) {
+          const ans = userAnswers[globalIndex];
+          q.options.forEach((_, optIdx) => {
+            const btn = document.getElementById(`opt-${globalIndex}-${optIdx}`);
+            if (btn) {
+              btn.disabled = true;
+              if (optIdx === q.correct) btn.classList.add('correct');
+              else if (optIdx === ans.selected) btn.classList.add('wrong');
+            }
+          });
+          const expBox = document.getElementById(`exp-${globalIndex}`);
+          if (expBox) expBox.style.display = 'block';
+        }
+      });
+    }
+
+    function selectOption(qIdx, selectedOptIdx) {
+      if (userAnswers[qIdx] !== undefined) return;
+
+      const q = questionsData[qIdx];
+      const isCorrect = (selectedOptIdx === q.correct);
+      userAnswers[qIdx] = { selected: selectedOptIdx, correct: isCorrect };
+
+      q.options.forEach((_, optIdx) => {
+        const btn = document.getElementById(`opt-${qIdx}-${optIdx}`);
+        if (btn) {
+          btn.disabled = true;
+          if (optIdx === q.correct) {
+            btn.classList.add('correct');
+          } else if (optIdx === selectedOptIdx) {
+            btn.classList.add('wrong');
+          }
+        }
+      });
+
+      const expBox = document.getElementById(`exp-${qIdx}`);
+      if (expBox) expBox.style.display = 'block';
+
+      updateStats();
+    }
+
+    function updateStats() {
+      const answeredKeys = Object.keys(userAnswers);
+      const totalAnswered = answeredKeys.length;
+      let hits = 0;
+      let errors = 0;
+
+      answeredKeys.forEach(k => {
+        if (userAnswers[k].correct) hits++;
+        else errors++;
+      });
+
+      document.getElementById('stat-hits-num').innerText = hits;
+      document.getElementById('stat-errors-num').innerText = errors;
+      
+      const pct = totalAnswered > 0 ? Math.round((hits / totalAnswered) * 100) : 0;
+      document.getElementById('stat-pct-num').innerText = pct + '%';
+
+      const progressPct = Math.round((totalAnswered / questionsData.length) * 100);
+      document.getElementById('quiz-progress-bar').style.width = progressPct + '%';
+    }
+
+    function resetQuiz() {
+      userAnswers = {};
+      document.getElementById('stat-hits-num').innerText = '0';
+      document.getElementById('stat-errors-num').innerText = '0';
+      document.getElementById('stat-pct-num').innerText = '0%';
+      document.getElementById('quiz-progress-bar').style.width = '0%';
+      renderQuestions();
+    }
+
+    function filterTopic(topic) {
+      currentFilter = topic;
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      renderQuestions();
+    }
+
+    window.onload = function() {
+      renderQuestions();
+    };
+  </script>
+</body>
+</html>
